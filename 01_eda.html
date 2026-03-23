@@ -1,0 +1,1922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Análisis Exploratorio de Datos (EDA) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_eda';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Scikit-learn" href="MNPyspark.html" />
+    <link rel="prev" title="Miniproyecto #1 DeepLearning" href="markdown.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Miniproyecto #1 DeepLearning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MNPyspark.html">2. Scikit-learn</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F01_eda.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_eda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Análisis Exploratorio de Datos (EDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-los-datos">1.1 Carga de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-la-variable-click-objetivo">1.2 Análisis de la distribución de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code> (objetivo)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-valores-faltantes-y-tipos-de-datos">1.3 Verificación de valores faltantes y tipos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-cardinalidad-de-las-variables-categoricas">1.4 Análisis de la cardinalidad de las variables categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-de-la-variable-hour">1.5 Transformación de la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramas-de-variables-numericas-derivadas">1.6 Histogramas de variables numéricas derivadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-frecuencia-de-las-principales-variables-categoricas">1.7 Gráficos de frecuencia de las principales variables categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-clicks-por-hora-del-dia">1.8 Distribución de clicks por hora del día</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-correlacion-para-variables-numericas-creadas">1.9 Matriz de correlación para variables numéricas creadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">1.10 Conclusiones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="analisis-exploratorio-de-datos-eda">
+<h1>1. Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#analisis-exploratorio-de-datos-eda" title="Link to this heading">#</a></h1>
+<section id="carga-de-los-datos">
+<h2>1.1 Carga de los datos<a class="headerlink" href="#carga-de-los-datos" title="Link to this heading">#</a></h2>
+<p>Para este miniproyecto contamos con un dataset de <code class="docutils literal notranslate"><span class="pre">Kaggle</span></code>, el cual viene comprimido en un archivo .gz, por lo que, para ahorrar espacio en el disco, decidimos descomprimir este archivo directamente en este notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># CARGA DE DATOS - VERSIÓN SIMPLE Y CORRECTA</span>
+<span class="c1"># ============================================</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">ruta_train</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\DL\miniproyecto_1\data\train.gz&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inicio carga: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ruta_train</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Cargados </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> registros&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fin carga: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columnas: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1">#Para mostrar todas las columnas del head()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inicio carga: 19:15:04
+✅ Cargados 40,428,967 registros
+Fin carga: 19:17:01
+
+Columnas: [&#39;id&#39;, &#39;click&#39;, &#39;hour&#39;, &#39;C1&#39;, &#39;banner_pos&#39;, &#39;site_id&#39;, &#39;site_domain&#39;, &#39;site_category&#39;, &#39;app_id&#39;, &#39;app_domain&#39;, &#39;app_category&#39;, &#39;device_id&#39;, &#39;device_ip&#39;, &#39;device_model&#39;, &#39;device_type&#39;, &#39;device_conn_type&#39;, &#39;C14&#39;, &#39;C15&#39;, &#39;C16&#39;, &#39;C17&#39;, &#39;C18&#39;, &#39;C19&#39;, &#39;C20&#39;, &#39;C21&#39;]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>click</th>
+      <th>hour</th>
+      <th>C1</th>
+      <th>banner_pos</th>
+      <th>site_id</th>
+      <th>site_domain</th>
+      <th>site_category</th>
+      <th>app_id</th>
+      <th>app_domain</th>
+      <th>app_category</th>
+      <th>device_id</th>
+      <th>device_ip</th>
+      <th>device_model</th>
+      <th>device_type</th>
+      <th>device_conn_type</th>
+      <th>C14</th>
+      <th>C15</th>
+      <th>C16</th>
+      <th>C17</th>
+      <th>C18</th>
+      <th>C19</th>
+      <th>C20</th>
+      <th>C21</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.000009e+18</td>
+      <td>0</td>
+      <td>14102100</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1fbe01fe</td>
+      <td>f3845767</td>
+      <td>28905ebd</td>
+      <td>ecad2386</td>
+      <td>7801e8d9</td>
+      <td>07d7df22</td>
+      <td>a99f214a</td>
+      <td>ddd2926e</td>
+      <td>44956a24</td>
+      <td>1</td>
+      <td>2</td>
+      <td>15706</td>
+      <td>320</td>
+      <td>50</td>
+      <td>1722</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.000017e+19</td>
+      <td>0</td>
+      <td>14102100</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1fbe01fe</td>
+      <td>f3845767</td>
+      <td>28905ebd</td>
+      <td>ecad2386</td>
+      <td>7801e8d9</td>
+      <td>07d7df22</td>
+      <td>a99f214a</td>
+      <td>96809ac8</td>
+      <td>711ee120</td>
+      <td>1</td>
+      <td>0</td>
+      <td>15704</td>
+      <td>320</td>
+      <td>50</td>
+      <td>1722</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.000037e+19</td>
+      <td>0</td>
+      <td>14102100</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1fbe01fe</td>
+      <td>f3845767</td>
+      <td>28905ebd</td>
+      <td>ecad2386</td>
+      <td>7801e8d9</td>
+      <td>07d7df22</td>
+      <td>a99f214a</td>
+      <td>b3cf8def</td>
+      <td>8a4875bd</td>
+      <td>1</td>
+      <td>0</td>
+      <td>15704</td>
+      <td>320</td>
+      <td>50</td>
+      <td>1722</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.000064e+19</td>
+      <td>0</td>
+      <td>14102100</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1fbe01fe</td>
+      <td>f3845767</td>
+      <td>28905ebd</td>
+      <td>ecad2386</td>
+      <td>7801e8d9</td>
+      <td>07d7df22</td>
+      <td>a99f214a</td>
+      <td>e8275b8f</td>
+      <td>6332421a</td>
+      <td>1</td>
+      <td>0</td>
+      <td>15706</td>
+      <td>320</td>
+      <td>50</td>
+      <td>1722</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.000068e+19</td>
+      <td>0</td>
+      <td>14102100</td>
+      <td>1005</td>
+      <td>1</td>
+      <td>fe8cc448</td>
+      <td>9166c161</td>
+      <td>0569f928</td>
+      <td>ecad2386</td>
+      <td>7801e8d9</td>
+      <td>07d7df22</td>
+      <td>a99f214a</td>
+      <td>9644d0bf</td>
+      <td>779d90c2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>18993</td>
+      <td>320</td>
+      <td>50</td>
+      <td>2161</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+      <td>157</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="analisis-de-la-distribucion-de-la-variable-click-objetivo">
+<h2>1.2 Análisis de la distribución de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code> (objetivo)<a class="headerlink" href="#analisis-de-la-distribucion-de-la-variable-click-objetivo" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANÁLISIS DE VARIABLE OBJETIVO</span>
+<span class="n">click_dist</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;click&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">click_dist</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="n">click_dist</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+               <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#2ecc71&#39;</span><span class="p">,</span> <span class="s1">&#39;#e74c3c&#39;</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Variable &quot;click&quot;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Click (0 = No, 1 = Sí)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Porcentaje (%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="c1"># Añadir etiquetas</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">click_dist</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - Total de observaciones: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - No click (0): </span><span class="si">{</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - Click (1): </span><span class="si">{</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% (</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10ed09a5e5e19dd35e019ceeb98685efa51351f058ffc1ef1a1a6b3663aff4e4.png" src="_images/10ed09a5e5e19dd35e019ceeb98685efa51351f058ffc1ef1a1a6b3663aff4e4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas:
+  - Total de observaciones: 40,428,967
+  - No click (0): 83.02% (33,563,901)
+  - Click (1): 16.98% (6,865,066)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gracias a este diagrama podemos observar un claro desbalance en la distribución de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code>, siendo la clase 0 (no click) la clase mayoritaria y la clase 1 (click) la minoritaria.</p>
+<p>Veamos ahora los tipos de variables con los que contamos y si contamos o no con valores faltantes en ellas.</p>
+</section>
+<section id="verificacion-de-valores-faltantes-y-tipos-de-datos">
+<h2>1.3 Verificación de valores faltantes y tipos de datos<a class="headerlink" href="#verificacion-de-valores-faltantes-y-tipos-de-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># INFORMACIÓN DEL DATAFRAME</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Información del DataFrame:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Valores nulos:&quot;</span><span class="p">)</span>
+<span class="n">null_counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">null_cols</span> <span class="o">=</span> <span class="n">null_counts</span><span class="p">[</span><span class="n">null_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">null_cols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas con valores nulos:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">null_cols</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> nulos (</span><span class="si">{</span><span class="n">val</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay valores nulos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Información del DataFrame:
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 40428967 entries, 0 to 40428966
+Data columns (total 24 columns):
+ #   Column            Dtype  
+---  ------            -----  
+ 0   id                float64
+ 1   click             int64  
+ 2   hour              int64  
+ 3   C1                int64  
+ 4   banner_pos        int64  
+ 5   site_id           object 
+ 6   site_domain       object 
+ 7   site_category     object 
+ 8   app_id            object 
+ 9   app_domain        object 
+ 10  app_category      object 
+ 11  device_id         object 
+ 12  device_ip         object 
+ 13  device_model      object 
+ 14  device_type       int64  
+ 15  device_conn_type  int64  
+ 16  C14               int64  
+ 17  C15               int64  
+ 18  C16               int64  
+ 19  C17               int64  
+ 20  C18               int64  
+ 21  C19               int64  
+ 22  C20               int64  
+ 23  C21               int64  
+dtypes: float64(1), int64(14), object(9)
+memory usage: 7.2+ GB
+None
+
+Valores nulos:
+No hay valores nulos en la muestra
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usando <code class="docutils literal notranslate"><span class="pre">.info()</span></code> podemos ver los tipos de las variables, donde hay 14 variables numéricas (<code class="docutils literal notranslate"><span class="pre">int64</span></code>) y 9 categóricas (<code class="docutils literal notranslate"><span class="pre">object</span></code>), sin embargo sabemos que las variables <code class="docutils literal notranslate"><span class="pre">C1</span></code>, <code class="docutils literal notranslate"><span class="pre">C14</span></code>,<code class="docutils literal notranslate"><span class="pre">C15</span></code>,<code class="docutils literal notranslate"><span class="pre">C16</span></code>,<code class="docutils literal notranslate"><span class="pre">C17</span></code>,<code class="docutils literal notranslate"><span class="pre">C18</span></code>,<code class="docutils literal notranslate"><span class="pre">C19</span></code>,<code class="docutils literal notranslate"><span class="pre">C20</span></code> y <code class="docutils literal notranslate"><span class="pre">C21</span></code> son en realidad variables categóricas, por lo que deberemos tener en cuenta esto al momento de utilizarlas.</p>
+<p>Antes de continuar con el análisis, verifiquemos que no hayan registros duplicados en el dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Registros después de eliminar duplicados: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Registros después de eliminar duplicados: 40,428,967
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dado que el número de registros resultantes es el mismo que el original, no hay duplicados en el dataset.</p>
+</section>
+<section id="analisis-de-la-cardinalidad-de-las-variables-categoricas">
+<h2>1.4 Análisis de la cardinalidad de las variables categóricas<a class="headerlink" href="#analisis-de-la-cardinalidad-de-las-variables-categoricas" title="Link to this heading">#</a></h2>
+<p>A continuación presentamos la cardinalidad de las variables teniendo en cuenta también aquellas que están registradas como números.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ANÁLISIS DE CARDINALIDAD&quot;</span><span class="p">)</span>
+
+<span class="c1"># Variables categóricas de texto</span>
+<span class="n">cat_texto</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;\Variables categóricas de texto (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cat_texto</span><span class="p">)</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+<span class="n">cardinalidad</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_texto</span><span class="p">:</span>
+    <span class="n">n_unique</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">cardinalidad</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_unique</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n_unique</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> valores únicos&quot;</span><span class="p">)</span>
+
+<span class="c1"># Variables numérico-categóricas</span>
+<span class="n">num_cat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;banner_pos&#39;</span><span class="p">,</span> <span class="s1">&#39;device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;device_conn_type&#39;</span><span class="p">,</span> 
+           <span class="s1">&#39;C14&#39;</span><span class="p">,</span> <span class="s1">&#39;C15&#39;</span><span class="p">,</span> <span class="s1">&#39;C16&#39;</span><span class="p">,</span> <span class="s1">&#39;C17&#39;</span><span class="p">,</span> <span class="s1">&#39;C18&#39;</span><span class="p">,</span> <span class="s1">&#39;C19&#39;</span><span class="p">,</span> <span class="s1">&#39;C20&#39;</span><span class="p">,</span> <span class="s1">&#39;C21&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variables numérico-categóricas:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_cat</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">n_unique</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+        <span class="n">cardinalidad</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_unique</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n_unique</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> valores únicos&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualizar top 10 de cardinalidad</span>
+<span class="n">top_cardinalidad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cardinalidad</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top_cardinalidad</span><span class="p">)),</span> <span class="n">top_cardinalidad</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top_cardinalidad</span><span class="p">)),</span> <span class="n">top_cardinalidad</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top 10 Variables con Mayor Cardinalidad&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Número de valores únicos&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Añadir valores</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">top_cardinalidad</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">,</span>
+             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ANÁLISIS DE CARDINALIDAD
+\Variables categóricas de texto (9):
+  - site_id: 4,737 valores únicos
+  - site_domain: 7,745 valores únicos
+  - site_category: 26 valores únicos
+  - app_id: 8,552 valores únicos
+  - app_domain: 559 valores únicos
+  - app_category: 36 valores únicos
+  - device_id: 2,686,408 valores únicos
+  - device_ip: 6,729,486 valores únicos
+  - device_model: 8,251 valores únicos
+
+Variables numérico-categóricas:
+  - C1: 7 valores únicos
+  - banner_pos: 7 valores únicos
+  - device_type: 5 valores únicos
+  - device_conn_type: 4 valores únicos
+  - C14: 2,626 valores únicos
+  - C15: 8 valores únicos
+  - C16: 9 valores únicos
+  - C17: 435 valores únicos
+  - C18: 4 valores únicos
+  - C19: 68 valores únicos
+  - C20: 172 valores únicos
+  - C21: 60 valores únicos
+</pre></div>
+</div>
+<img alt="_images/bc393f3f99d00b8ee2fa997f0aeffed0987fe4dd3e4c2eb03929f075cafcde24.png" src="_images/bc393f3f99d00b8ee2fa997f0aeffed0987fe4dd3e4c2eb03929f075cafcde24.png" />
+</div>
+</div>
+<p>Las variables <code class="docutils literal notranslate"><span class="pre">devide_ip</span></code> y <code class="docutils literal notranslate"><span class="pre">device_id</span></code> cuentan demasiadas categorías (6.7M y 2.7M). En un proyecto real, se usaría hashing o embedding, pero para este proyecto las excluimos.</p>
+<p>Utilizando ahora el estádistico V de Cramér revisemos la correlación entre las variables categóricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cramers_v</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula V de Cramér entre dos columnas categóricas.&quot;&quot;&quot;</span>
+    <span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">chi2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">tabla</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">tabla</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># Columnas categóricas</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;site_domain&#39;</span><span class="p">,</span> <span class="s1">&#39;site_category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;app_domain&#39;</span><span class="p">,</span> <span class="s1">&#39;app_category&#39;</span><span class="p">,</span> <span class="s1">&#39;device_model&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;device_conn_type&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;C14&#39;</span><span class="p">,</span> <span class="s1">&#39;C15&#39;</span><span class="p">,</span> <span class="s1">&#39;C16&#39;</span><span class="p">,</span> <span class="s1">&#39;C17&#39;</span><span class="p">,</span> <span class="s1">&#39;C18&#39;</span><span class="p">,</span> <span class="s1">&#39;C19&#39;</span><span class="p">,</span> <span class="s1">&#39;C20&#39;</span><span class="p">,</span> <span class="s1">&#39;C21&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Calcular matriz de V de Cramér</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categorical_features</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculando V de Cramér... (puede tardar unos segundos)&quot;</span><span class="p">)</span>
+<span class="n">matriz</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col1</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">col2</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">col1</span> <span class="o">==</span> <span class="n">col2</span><span class="p">:</span>
+            <span class="n">matriz</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">matriz</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cramers_v</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span>
+                <span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">]</span>
+            <span class="p">)</span>
+
+<span class="c1"># Visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">matriz</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Matriz de correlación — V de Cramér (variables categóricas)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;correlacion_categoricas.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Pares con alta correlación (&gt; 0.7)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pares con alta correlación (V de Cramér &gt; 0.7):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col2</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">matriz</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">col1</span><span class="si">}</span><span class="s2"> ↔ </span><span class="si">{</span><span class="n">col2</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculando V de Cramér... (puede tardar unos segundos)
+</pre></div>
+</div>
+<img alt="_images/de7d47135ea96687b4940c87cf6da495dad289fb011fd5b200e9c6c018367de2.png" src="_images/de7d47135ea96687b4940c87cf6da495dad289fb011fd5b200e9c6c018367de2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pares con alta correlación (V de Cramér &gt; 0.7):
+  C1 ↔ device_type: 0.707
+  site_domain ↔ site_category: 0.762
+  device_model ↔ device_type: 0.843
+  device_model ↔ device_conn_type: 0.805
+  C14 ↔ C15: 1.000
+  C14 ↔ C16: 1.000
+  C14 ↔ C17: 1.000
+  C14 ↔ C18: 0.993
+  C14 ↔ C19: 0.879
+  C14 ↔ C21: 1.000
+  C15 ↔ C16: 0.983
+  C17 ↔ C18: 0.992
+  C17 ↔ C19: 0.868
+  C17 ↔ C21: 1.000
+  C18 ↔ C21: 0.902
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como podemos apreciar en la matriz de correlación y en la posterior salida, existen correlaciones altas, e incluso perfectas, entre algunas de las variables categóricas consideradas, esto lo consideraremos a la hora de seleccionar las variables, también tendremos en cuenta su cardinalidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># SELECCIÓN DE VARIABLES BASADA EN CARDINALIDAD</span>
+<span class="c1"># ============================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SELECCIÓN DE VARIABLES BASADA EN CARDINALIDAD&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Verificar que df existe y tiene datos</span>
+<span class="k">if</span> <span class="s1">&#39;df&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: df no está definido. Ejecuta primero la celda de carga.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DataFrame cargado: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Variables con cardinalidad EXTREMA (descartamos)</span>
+    <span class="n">vars_excluir</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;device_ip&#39;</span><span class="p">,</span> <span class="s1">&#39;device_id&#39;</span><span class="p">,</span> <span class="s1">&#39;device_model&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;app_id&#39;</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variables EXCLUIDAS (cardinalidad extrema):&quot;</span><span class="p">)</span>
+    <span class="n">vars_excluir_existentes</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_excluir</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_excluir_existentes</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> valores únicos&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Variables categóricas con cardinalidad BAJA</span>
+    <span class="n">vars_onehot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;site_category&#39;</span><span class="p">,</span> <span class="s1">&#39;app_category&#39;</span><span class="p">,</span> 
+                   <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;banner_pos&#39;</span><span class="p">,</span> <span class="s1">&#39;device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;device_conn_type&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;C15&#39;</span><span class="p">,</span> <span class="s1">&#39;C16&#39;</span><span class="p">,</span> <span class="s1">&#39;C18&#39;</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variables para OneHotEncoder (cardinalidad baja):&quot;</span><span class="p">)</span>
+    <span class="n">vars_onehot_existentes</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_onehot</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_onehot_existentes</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> valores únicos&quot;</span><span class="p">)</span>
+    
+    
+    <span class="c1"># Variables de alta cardinalidad (Target Encoding)</span>
+    <span class="n">vars_target</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C14&#39;</span><span class="p">,</span> <span class="s1">&#39;C17&#39;</span><span class="p">,</span> <span class="s1">&#39;C19&#39;</span><span class="p">,</span> <span class="s1">&#39;C20&#39;</span><span class="p">,</span> <span class="s1">&#39;C21&#39;</span><span class="p">,</span> <span class="s1">&#39;app_domain&#39;</span><span class="p">,</span> <span class="s1">&#39;site_domain&#39;</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variables para Target Encoding (cardinalidad media/alta):&quot;</span><span class="p">)</span>
+    <span class="n">vars_target_existentes</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_target</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vars_target_existentes</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> valores únicos&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Variable objetivo</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;click&#39;</span>
+    
+    <span class="c1"># Variables seleccionadas (simplificado)</span>
+    <span class="n">cols_seleccionadas</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;click&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;site_category&#39;</span><span class="p">,</span> <span class="s1">&#39;site_domain&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;app_category&#39;</span><span class="p">,</span> <span class="s1">&#39;app_domain&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;banner_pos&#39;</span><span class="p">,</span> <span class="s1">&#39;device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;device_conn_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;C16&#39;</span><span class="p">,</span>  <span class="s1">&#39;C18&#39;</span><span class="p">,</span> <span class="s1">&#39;C19&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;C20&#39;</span>  
+    <span class="p">]</span>
+    
+    <span class="c1"># Verificar que todas las columnas existen</span>
+    <span class="n">cols_seleccionadas</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_seleccionadas</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total variables seleccionadas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cols_seleccionadas</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista final:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_seleccionadas</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Crear DataFrame reducido</span>
+    <span class="n">df_modelo</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_seleccionadas</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DataFrame reducido creado: </span><span class="si">{</span><span class="n">df_modelo</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+SELECCIÓN DE VARIABLES BASADA EN CARDINALIDAD
+============================================================
+DataFrame cargado: (40428967, 24)
+
+Variables EXCLUIDAS (cardinalidad extrema):
+  - device_ip: 6,729,486 valores únicos
+  - device_id: 2,686,408 valores únicos
+  - device_model: 8,251 valores únicos
+  - site_id: 4,737 valores únicos
+  - app_id: 8,552 valores únicos
+
+Variables para OneHotEncoder (cardinalidad baja):
+  - site_category: 26 valores únicos
+  - app_category: 36 valores únicos
+  - C1: 7 valores únicos
+  - banner_pos: 7 valores únicos
+  - device_type: 5 valores únicos
+  - device_conn_type: 4 valores únicos
+  - C15: 8 valores únicos
+  - C16: 9 valores únicos
+  - C18: 4 valores únicos
+
+Variables para Target Encoding (cardinalidad media/alta):
+  - C14: 2626 valores únicos
+  - C17: 435 valores únicos
+  - C19: 68 valores únicos
+  - C20: 172 valores únicos
+  - C21: 60 valores únicos
+  - app_domain: 559 valores únicos
+  - site_domain: 7745 valores únicos
+
+Total variables seleccionadas: 13
+Lista final:
+  - click
+  - site_category
+  - site_domain
+  - app_category
+  - app_domain
+  - C1
+  - banner_pos
+  - device_type
+  - device_conn_type
+  - C16
+  - C18
+  - C19
+  - C20
+
+DataFrame reducido creado: (40428967, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Decidimos descartar algunas variables <code class="docutils literal notranslate"><span class="pre">C14-C21</span></code> debido a sus altas correlaciones entre si mostradas en la matriz de correlación. Además, conservamos el dominio del sitio web y la app debido a que este puede tener una gran influencia a la hora de que un usuario de click en un anuncio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_modelo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>click</th>
+      <th>site_category</th>
+      <th>site_domain</th>
+      <th>app_category</th>
+      <th>app_domain</th>
+      <th>C1</th>
+      <th>banner_pos</th>
+      <th>device_type</th>
+      <th>device_conn_type</th>
+      <th>C16</th>
+      <th>C18</th>
+      <th>C19</th>
+      <th>C20</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0569f928</td>
+      <td>9166c161</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="transformacion-de-la-variable-hour">
+<h2>1.5 Transformación de la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code><a class="headerlink" href="#transformacion-de-la-variable-hour" title="Link to this heading">#</a></h2>
+<p>A continuación transformamos la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code> (la cual viene registrada en formato YYMMDDHH) en columnas separadas de año, mes, día y hora, junto con una franja horaria.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transformando variable &#39;hour&#39; (formato YYMMDDHH)&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_hour</span><span class="p">(</span><span class="n">hour_val</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extrae componentes de hora formato YYMMDDHH</span>
+<span class="sd">    Ejemplo: 14091123 -&gt; Año: 2014, Mes: 09, Día: 11, Hora: 23</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hour_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hour_val</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># Asegurar 8 dígitos</span>
+    
+    <span class="n">year</span> <span class="o">=</span> <span class="mi">2000</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">hour_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>    <span class="c1"># YY -&gt; 2000 + YY</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hour_str</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>           <span class="c1"># MM</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hour_str</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>             <span class="c1"># DD</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hour_str</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span>             <span class="c1"># HH</span>
+    
+    <span class="k">return</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span>
+
+<span class="c1"># Aplicar transformación</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_hour</span><span class="p">))</span>
+
+<span class="c1"># Crear franja horaria (opcional, pero útil para análisis)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_time_slot</span><span class="p">(</span><span class="n">hour</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;mañana&#39;</span>
+    <span class="k">elif</span> <span class="mi">12</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;tarde&#39;</span>
+    <span class="k">elif</span> <span class="mi">18</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;noche&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;madrugada&#39;</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_slot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_time_slot</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Nuevas características creadas correctamente:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - hour_of_day: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2"> (hora del día)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - time_slot: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_slot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2"> (franjas horarias)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mostrar ejemplos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ejemplos de transformación (primeras 10 filas):&quot;</span><span class="p">)</span>
+<span class="n">ejemplos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour_of_day&#39;</span><span class="p">,</span><span class="s1">&#39;time_slot&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ejemplos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformando variable &#39;hour&#39; (formato YYMMDDHH)
+
+Nuevas características creadas correctamente:
+  - hour_of_day: 0-23 (hora del día)
+  - time_slot: [&#39;madrugada&#39;, &#39;mañana&#39;, &#39;tarde&#39;, &#39;noche&#39;] (franjas horarias)
+
+Ejemplos de transformación (primeras 10 filas):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hour</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour_of_day</th>
+      <th>time_slot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>14102100</td>
+      <td>2014</td>
+      <td>10</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="histogramas-de-variables-numericas-derivadas">
+<h2>1.6 Histogramas de variables numéricas derivadas<a class="headerlink" href="#histogramas-de-variables-numericas-derivadas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># HISTOGRAMAS DE VARIABLES NUMÉRICAS DERIVADAS</span>
+<span class="c1"># ============================================</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># puedes ajustar el alto si quieres más espacio</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Distribución de Variables Temporales&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># year</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de Año&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># month</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de Mes&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Mes&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># day</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de Día&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Día&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># hour_of_day</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de Hora del Día&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hora&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">])</span>  <span class="c1"># deja espacio para el supertítulo</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a413a1e144faeab147c913755f6327588aebb759bcb98022c694ae452d340d5c.png" src="_images/a413a1e144faeab147c913755f6327588aebb759bcb98022c694ae452d340d5c.png" />
+</div>
+</div>
+<p>De estos histogramas podemos concluir que:</p>
+<ul class="simple">
+<li><p>Tal y como se anticipa en la descripción del dataset en <code class="docutils literal notranslate"><span class="pre">Kaggle</span></code>, dado que los datos disponibles solo son de 10 dias, se entiende que tanto el mes como el año tengan un único valor, ya que los datos van de 21 de octubre de 2014 al 30 de octubre de 2014.</p></li>
+<li><p>Se observa una tendencia, como es natural, a disminuir la actividad en horarios nocturnos y a aumentar en horarios diurnos.</p></li>
+<li><p>Los días con más tráfico en la web fueron el 22 de octubre y 28 de octubre.</p></li>
+</ul>
+<p>Entonces, como una variable con un solo valor no es útil, eliminamos <code class="docutils literal notranslate"><span class="pre">year</span></code> y <code class="docutils literal notranslate"><span class="pre">month</span></code> del análisis, y además borramos la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code> ya que esta ya se utilizó para crear las variables temporales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;hour&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="graficos-de-frecuencia-de-las-principales-variables-categoricas">
+<h2>1.7 Gráficos de frecuencia de las principales variables categóricas<a class="headerlink" href="#graficos-de-frecuencia-de-las-principales-variables-categoricas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># FRECUENCIA DE VARIABLES CATEGÓRICAS PRINCIPALES</span>
+<span class="c1"># ============================================</span>
+<span class="n">top_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;banner_pos&#39;</span><span class="p">,</span> <span class="s1">&#39;device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;site_category&#39;</span><span class="p">,</span> <span class="s1">&#39;app_category&#39;</span><span class="p">]</span>
+<span class="n">top_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">top_vars</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Top 10 Categorías - Variables Principales&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">top_vars</span><span class="p">):</span>
+    <span class="n">top10</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top10</span><span class="p">)),</span> <span class="n">top10</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top10</span><span class="p">)))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">top10</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> (total: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> categorías)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ocultar subplot vacío</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top_vars</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5b684bb08a47f01596133964f16a7803d53a8d75ec7d764ca059272b40d083a5.png" src="_images/5b684bb08a47f01596133964f16a7803d53a8d75ec7d764ca059272b40d083a5.png" />
+</div>
+</div>
+</section>
+<section id="distribucion-de-clicks-por-hora-del-dia">
+<h2>1.8 Distribución de clicks por hora del día<a class="headerlink" href="#distribucion-de-clicks-por-hora-del-dia" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># CTR POR HORA DEL DÍA</span>
+<span class="c1"># ============================================</span>
+<span class="n">ctr_hour</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">)[</span><span class="s1">&#39;click&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="n">ctr_hour</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">,</span> <span class="s1">&#39;impresiones&#39;</span><span class="p">]</span>
+<span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">100</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Click-Through Rate (CTR) por Hora del Día&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Barras de impresiones</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ctr_hour</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;impresiones&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hora del día&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Número de impresiones&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="c1"># Línea de CTR</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctr_hour</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;CTR (%)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hora con mayor CTR: </span><span class="si">{</span><span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">:00 (</span><span class="si">{</span><span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hora con menor CTR: </span><span class="si">{</span><span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span><span class="si">}</span><span class="s2">:00 (</span><span class="si">{</span><span class="n">ctr_hour</span><span class="p">[</span><span class="s1">&#39;ctr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c5b2c274f7e760ac61e564242089bff4545bac5b951254b7703d8edc55bc5c0d.png" src="_images/c5b2c274f7e760ac61e564242089bff4545bac5b951254b7703d8edc55bc5c0d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hora con mayor CTR: 1:00 (18.58%)
+Hora con menor CTR: 4:00 (15.96%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-correlacion-para-variables-numericas-creadas">
+<h2>1.9 Matriz de correlación para variables numéricas creadas<a class="headerlink" href="#matriz-de-correlacion-para-variables-numericas-creadas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># MATRIZ DE CORRELACIÓN</span>
+<span class="c1"># ============================================</span>
+<span class="c1"># Variables numéricas a correlacionar</span>
+<span class="n">num_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">num_vars</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mapa de Correlación de Variables Numéricas&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2badcbc4645f89d1f82fbdd1859c68264233a52910f3d7ecc1f2ec34611d3d7d.png" src="_images/2badcbc4645f89d1f82fbdd1859c68264233a52910f3d7ecc1f2ec34611d3d7d.png" />
+</div>
+</div>
+<p>Finalmente, juntamos las variables temporales creadas con las variables seleccionadas que están en <code class="docutils literal notranslate"><span class="pre">df_modelo</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_modelo</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span>
+<span class="n">df_modelo</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_of_day&#39;</span><span class="p">]</span>
+<span class="n">df_modelo</span><span class="p">[</span><span class="s1">&#39;time_slot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_slot&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># SELECCIÓN FINAL DE VARIABLES - VERSIÓN SIMPLIFICADA</span>
+<span class="c1"># ============================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SELECCIÓN FINAL DE VARIABLES - VERSIÓN SIMPLIFICADA&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> DataFrame final creado: </span><span class="si">{</span><span class="n">df_modelo</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Primeras 5 filas:&quot;</span><span class="p">)</span>
+<span class="n">df_modelo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+SELECCIÓN FINAL DE VARIABLES - VERSIÓN SIMPLIFICADA
+============================================================
+
+ DataFrame final creado: (40428967, 16)
+
+ Primeras 5 filas:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>click</th>
+      <th>site_category</th>
+      <th>site_domain</th>
+      <th>app_category</th>
+      <th>app_domain</th>
+      <th>C1</th>
+      <th>banner_pos</th>
+      <th>device_type</th>
+      <th>device_conn_type</th>
+      <th>C16</th>
+      <th>C18</th>
+      <th>C19</th>
+      <th>C20</th>
+      <th>day</th>
+      <th>hour_of_day</th>
+      <th>time_slot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>28905ebd</td>
+      <td>f3845767</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>100084</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0569f928</td>
+      <td>9166c161</td>
+      <td>07d7df22</td>
+      <td>7801e8d9</td>
+      <td>1005</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>50</td>
+      <td>0</td>
+      <td>35</td>
+      <td>-1</td>
+      <td>21</td>
+      <td>0</td>
+      <td>madrugada</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruta_final</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\DL\miniproyecto_1\data\data_limpia.csv&quot;</span>
+<span class="n">df_modelo</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">ruta_final</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;💾 Datos guardados en: </span><span class="si">{</span><span class="n">ruta_final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>💾 Datos guardados en: C:\DL\miniproyecto_1\data\data_limpia.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusiones">
+<h2>1.10 Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================</span>
+<span class="c1"># CONCLUSIONES FINALES DEL EDA</span>
+<span class="c1"># ============================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CONCLUSIONES DEL ANÁLISIS EXPLORATORIO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 1. VARIABLE OBJETIVO:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Distribución: </span><span class="si">{</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% No Click, </span><span class="si">{</span><span class="n">click_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% Click&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 2. CARDINALIDAD:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Variables excluidas por alta cardinalidad:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     • device_ip (313K), device_id (83K), device_model (4.5K)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     • site_id (2K), app_id (2.3K), site_domain (2K)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Variables para OneHotEncoder: site_category, app_category, banner_pos, etc.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 3. PATRONES TEMPORALES:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Los datos cubren múltiples horas y días &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 4. VARIABLES SELECCIONADAS PARA MODELADO:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Total: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_modelo</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2"> columnas&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_modelo</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     • </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 5. DATOS GUARDADOS:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Ruta: </span><span class="si">{</span><span class="n">ruta_final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Dimensiones: </span><span class="si">{</span><span class="n">df_modelo</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> 6. SIGUIENTE FASE: Fase 2 - Modelado con scikit-learn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+CONCLUSIONES DEL ANÁLISIS EXPLORATORIO
+============================================================
+
+ 1. VARIABLE OBJETIVO:
+   - Distribución: 83.02% No Click, 16.98% Click
+
+ 2. CARDINALIDAD:
+   - Variables excluidas por alta cardinalidad:
+     • device_ip (313K), device_id (83K), device_model (4.5K)
+     • site_id (2K), app_id (2.3K), site_domain (2K)
+   - Variables para OneHotEncoder: site_category, app_category, banner_pos, etc.
+
+ 3. PATRONES TEMPORALES:
+   - Los datos cubren múltiples horas y días 
+
+ 4. VARIABLES SELECCIONADAS PARA MODELADO:
+   - Total: 16 columnas
+     • click
+     • site_category
+     • site_domain
+     • app_category
+     • app_domain
+     • C1
+     • banner_pos
+     • device_type
+     • device_conn_type
+     • C16
+     • C18
+     • C19
+     • C20
+     • day
+     • hour_of_day
+     • time_slot
+
+ 5. DATOS GUARDADOS:
+   - Ruta: C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2\proyecto_ctr\datos\avazu_optimizado.csv
+   - Dimensiones: (40428967, 16)
+
+ 6. SIGUIENTE FASE: Fase 2 - Modelado con scikit-learn
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Miniproyecto #1 DeepLearning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="MNPyspark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2. Scikit-learn</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-los-datos">1.1 Carga de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-la-variable-click-objetivo">1.2 Análisis de la distribución de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code> (objetivo)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-valores-faltantes-y-tipos-de-datos">1.3 Verificación de valores faltantes y tipos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-cardinalidad-de-las-variables-categoricas">1.4 Análisis de la cardinalidad de las variables categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-de-la-variable-hour">1.5 Transformación de la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramas-de-variables-numericas-derivadas">1.6 Histogramas de variables numéricas derivadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-frecuencia-de-las-principales-variables-categoricas">1.7 Gráficos de frecuencia de las principales variables categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-clicks-por-hora-del-dia">1.8 Distribución de clicks por hora del día</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-correlacion-para-variables-numericas-creadas">1.9 Matriz de correlación para variables numéricas creadas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">1.10 Conclusiones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
