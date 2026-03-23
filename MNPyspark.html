@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -174,12 +174,11 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Miniproyecto #1 DeepLearning
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Miniproyecto #1 DeepLearning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_eda.html">1. Análisis Exploratorio de Datos (EDA)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Scikit-learn</a></li>
 
@@ -653,13 +652,11 @@ Name: proportion, dtype: float64
 <ul class="simple">
 <li><p>Para variables numéricas:</p>
 <ul>
-<li><p>imputación con la mediana,</p></li>
 <li><p>escalado con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>.</p></li>
 </ul>
 </li>
 <li><p>Para variables categóricas:</p>
 <ul>
-<li><p>imputación con la moda,</p></li>
 <li><p>codificación con <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>.</p></li>
 </ul>
 </li>
@@ -708,9 +705,7 @@ Name: proportion, dtype: float64
     <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,),</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
     <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">n_iter_no_change</span><span class="o">=</span><span class="mi">5</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -728,7 +723,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
                  ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                                   Pipeline(steps=[(&#x27;scaler&#x27;,
                                                                    StandardScaler())]),
@@ -749,9 +744,8 @@ Name: proportion, dtype: float64
                                                    &#x27;app_domain&#x27;, &#x27;app_category&#x27;,
                                                    &#x27;C19&#x27;, &#x27;C20&#x27;])])),
                 (&#x27;model&#x27;,
-                 MLPClassifier(early_stopping=True, hidden_layer_sizes=(50,),
-                               max_iter=50, n_iter_no_change=5,
-                               random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                 MLPClassifier(hidden_layer_sizes=(50,), max_iter=50,
+                               random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
                  ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                                   Pipeline(steps=[(&#x27;scaler&#x27;,
                                                                    StandardScaler())]),
@@ -772,9 +766,8 @@ Name: proportion, dtype: float64
                                                    &#x27;app_domain&#x27;, &#x27;app_category&#x27;,
                                                    &#x27;C19&#x27;, &#x27;C20&#x27;])])),
                 (&#x27;model&#x27;,
-                 MLPClassifier(early_stopping=True, hidden_layer_sizes=(50,),
-                               max_iter=50, n_iter_no_change=5,
-                               random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                 MLPClassifier(hidden_layer_sizes=(50,), max_iter=50,
+                               random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                  Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler())]),
                                  [&#x27;banner_pos&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]),
                                 (&#x27;cat_low&#x27;,
@@ -787,8 +780,7 @@ Name: proportion, dtype: float64
                                  Pipeline(steps=[(&#x27;encoder&#x27;,
                                                   TargetEncoder(smooth=10))]),
                                  [&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;,
-                                  &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>[&#x27;banner_pos&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">cat_low</label><div class="sk-toggleable__content"><pre>[&#x27;C1&#x27;, &#x27;device_type&#x27;, &#x27;device_conn_type&#x27;, &#x27;C16&#x27;, &#x27;C18&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">cat_high</label><div class="sk-toggleable__content"><pre>[&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;, &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">TargetEncoder</label><div class="sk-toggleable__content"><pre>TargetEncoder(smooth=10)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">MLPClassifier</label><div class="sk-toggleable__content"><pre>MLPClassifier(early_stopping=True, hidden_layer_sizes=(50,), max_iter=50,
-              n_iter_no_change=5, random_state=42)</pre></div></div></div></div></div></div></div></div></div>
+                                  &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>[&#x27;banner_pos&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">cat_low</label><div class="sk-toggleable__content"><pre>[&#x27;C1&#x27;, &#x27;device_type&#x27;, &#x27;device_conn_type&#x27;, &#x27;C16&#x27;, &#x27;C18&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">cat_high</label><div class="sk-toggleable__content"><pre>[&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;, &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">TargetEncoder</label><div class="sk-toggleable__content"><pre>TargetEncoder(smooth=10)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">MLPClassifier</label><div class="sk-toggleable__content"><pre>MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, random_state=42)</pre></div></div></div></div></div></div></div></div></div>
 </div>
 </section>
 <section id="entrenamiento-del-modelo-base">
@@ -808,7 +800,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de entrenamiento: 50.82 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de entrenamiento: 277.15 segundos
 </pre></div>
 </div>
 </div>
@@ -832,7 +824,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de predicción: 0.72 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de predicción: 1.20 segundos
 </pre></div>
 </div>
 </div>
@@ -887,27 +879,27 @@ Name: proportion, dtype: float64
     <tr>
       <th>0</th>
       <td>Accuracy</td>
-      <td>0.832240</td>
+      <td>0.831465</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Precision</td>
-      <td>0.554694</td>
+      <td>0.518593</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Recall</td>
-      <td>0.059004</td>
+      <td>0.098595</td>
     </tr>
     <tr>
       <th>3</th>
       <td>F1-score</td>
-      <td>0.106662</td>
+      <td>0.165689</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ROC AUC</td>
-      <td>0.717373</td>
+      <td>0.720569</td>
     </tr>
   </tbody>
 </table>
@@ -922,16 +914,23 @@ Name: proportion, dtype: float64
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0     0.8373    0.9903    0.9074    166053
-           1     0.5547    0.0590    0.1067     33947
+           0     0.8419    0.9813    0.9063    166053
+           1     0.5186    0.0986    0.1657     33947
 
-    accuracy                         0.8322    200000
-   macro avg     0.6960    0.5247    0.5070    200000
-weighted avg     0.7894    0.8322    0.7715    200000
+    accuracy                         0.8315    200000
+   macro avg     0.6802    0.5399    0.5360    200000
+weighted avg     0.7870    0.8315    0.7806    200000
 </pre></div>
 </div>
 </div>
 </div>
+<p>Como podemos ver, el desbalance de los datos se hace muy notorio en las métricas:</p>
+<ul class="simple">
+<li><p><strong>Accuracy</strong>: Este nos indica un “buen” desempeño de la red neuronal con un valor de <code class="docutils literal notranslate"><span class="pre">0.83</span></code> aproximadamente, sin embargo quedándonos solo con esta métrica no vemos el panoráma completo.</p></li>
+<li><p><strong>Recall de la clase positiva</strong>: Con un valor de <code class="docutils literal notranslate"><span class="pre">0.0986</span></code>, nos indica una pobre detección de los <strong>positivos reales</strong> del conjunto de prueba.</p></li>
+<li><p><strong>Precision de la clase positiva</strong>: El resultado de <code class="docutils literal notranslate"><span class="pre">0.52</span></code> aproximadamente en esta métrica nos indica que de los que clasifica como positivos, un poco más de la mitad de estas clasificaciones es correcta, por lo que en este sentido supera por poco al azar.</p></li>
+<li><p><strong>ROC AUC</strong>: Una métrica que nos indica como podemos seguir nuestro análisis es el valor auc de la curva ROC, con un valor de <code class="docutils literal notranslate"><span class="pre">0.72</span> <span class="pre">aproximadamente</span></code>, es decir, la probabilidad de que un positivo real tenga mayor probabilidad de pertenecer a la clase positiva que un negativo real es de 0.72, lo cual es importante ya que al ser un valor más elevado que los otros podemos pensar que el problema es el <strong>umbral de decisión</strong>. Esta información es crucial para la búsqueda de mejores parámetros que realizaremos más adelante.</p></li>
+</ul>
 </section>
 <section id="matriz-de-confusion">
 <h2>Matriz de confusión<a class="headerlink" href="#matriz-de-confusion" title="Link to this heading">#</a></h2>
@@ -976,13 +975,13 @@ weighted avg     0.7894    0.8322    0.7715    200000
   <tbody>
     <tr>
       <th>Real 0</th>
-      <td>164445</td>
-      <td>1608</td>
+      <td>162946</td>
+      <td>3107</td>
     </tr>
     <tr>
       <th>Real 1</th>
-      <td>31944</td>
-      <td>2003</td>
+      <td>30600</td>
+      <td>3347</td>
     </tr>
   </tbody>
 </table>
@@ -998,7 +997,7 @@ weighted avg     0.7894    0.8322    0.7715    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1d59c6aa067cbbe843b40d19bed32cbeb98abbf1a17e049c5d0f918bb59e831a.png" src="_images/1d59c6aa067cbbe843b40d19bed32cbeb98abbf1a17e049c5d0f918bb59e831a.png" />
+<img alt="_images/53fb0802326d899b8adabb62b618dba8790dd5a1a3df45aa414b74f5e2615987.png" src="_images/53fb0802326d899b8adabb62b618dba8790dd5a1a3df45aa414b74f5e2615987.png" />
 </div>
 </div>
 </section>
@@ -1014,7 +1013,7 @@ weighted avg     0.7894    0.8322    0.7715    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7ad6df60b273adb87ed281f2da6a1f6ca1be42512741054bcb3da685a436bd1f.png" src="_images/7ad6df60b273adb87ed281f2da6a1f6ca1be42512741054bcb3da685a436bd1f.png" />
+<img alt="_images/77f698e2e40945ae65f95ddd5080149babf8196cc624e3a469ca76022a05d117.png" src="_images/77f698e2e40945ae65f95ddd5080149babf8196cc624e3a469ca76022a05d117.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1055,12 +1054,12 @@ weighted avg     0.7894    0.8322    0.7715    200000
     <tr>
       <th>0</th>
       <td>Entrenamiento</td>
-      <td>50.822504</td>
+      <td>277.147948</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Predicción</td>
-      <td>0.720739</td>
+      <td>1.203010</td>
     </tr>
   </tbody>
 </table>
@@ -1089,8 +1088,7 @@ weighted avg     0.7894    0.8322    0.7715    200000
 <p>Para reducir el costo computacional del ajuste de hiperparámetros, se toma una submuestra estratificada del conjunto de entrenamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usar todo el X_train disponible (el millón)</span>
-<span class="n">X_train_tune</span> <span class="o">=</span> <span class="n">X_train</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_tune</span> <span class="o">=</span> <span class="n">X_train</span>
 <span class="n">y_train_tune</span> <span class="o">=</span> <span class="n">y_train</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dimensión de X_train_tune:&quot;</span><span class="p">,</span> <span class="n">X_train_tune</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1102,7 +1100,7 @@ weighted avg     0.7894    0.8322    0.7715    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensión de X_train_tune: (800000, 21)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensión de X_train_tune: (800000, 15)
 Dimensión de y_train_tune: (800000,)
 
 Distribución de clases en y_train_tune:
@@ -1163,7 +1161,7 @@ Name: proportion, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
     <span class="n">estimator</span><span class="o">=</span><span class="n">pipeline_grid</span><span class="p">,</span>
     <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
-    <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span>
     <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1192,7 +1190,7 @@ Name: proportion, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 18 candidates, totalling 90 fits
-Tiempo total de GridSearchCV: 821.44 segundos
+Tiempo total de GridSearchCV: 1060.41 segundos
 </pre></div>
 </div>
 </div>
@@ -1202,7 +1200,7 @@ Tiempo total de GridSearchCV: 821.44 segundos
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores hiperparámetros encontrados:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor score promedio en validación cruzada (F1):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor score promedio en validación cruzada (roc auc):&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1211,8 +1209,8 @@ Tiempo total de GridSearchCV: 821.44 segundos
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejores hiperparámetros encontrados:
 {&#39;model__alpha&#39;: 0.0001, &#39;model__hidden_layer_sizes&#39;: (100, 50), &#39;model__max_iter&#39;: 50}
 
-Mejor score promedio en validación cruzada (F1):
-0.11961111918515621
+Mejor score promedio en validación cruzada (roc auc):
+0.7184137881808287
 </pre></div>
 </div>
 </div>
@@ -1261,71 +1259,71 @@ Mejor score promedio en validación cruzada (F1):
     <tr>
       <th>0</th>
       <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
-      <td>0.119611</td>
-      <td>0.007828</td>
+      <td>0.718414</td>
+      <td>0.002702</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
       <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
-      <td>0.117833</td>
-      <td>0.024854</td>
+      <td>0.716050</td>
+      <td>0.005508</td>
       <td>2</td>
     </tr>
     <tr>
       <th>2</th>
       <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
-      <td>0.105897</td>
-      <td>0.020083</td>
+      <td>0.715530</td>
+      <td>0.001129</td>
       <td>3</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
-      <td>0.105567</td>
-      <td>0.008384</td>
+      <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
+      <td>0.715247</td>
+      <td>0.001831</td>
       <td>4</td>
     </tr>
     <tr>
       <th>4</th>
       <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
-      <td>0.104584</td>
-      <td>0.015102</td>
+      <td>0.713966</td>
+      <td>0.002581</td>
       <td>5</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
-      <td>0.096452</td>
-      <td>0.012891</td>
+      <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
+      <td>0.713957</td>
+      <td>0.004832</td>
       <td>6</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{'model__alpha': 0.01, 'model__hidden_layer_si...</td>
-      <td>0.093529</td>
-      <td>0.020724</td>
+      <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
+      <td>0.713710</td>
+      <td>0.003954</td>
       <td>7</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{'model__alpha': 0.01, 'model__hidden_layer_si...</td>
-      <td>0.087686</td>
-      <td>0.015251</td>
+      <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
+      <td>0.713256</td>
+      <td>0.003553</td>
       <td>8</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{'model__alpha': 0.0001, 'model__hidden_layer_...</td>
-      <td>0.086421</td>
-      <td>0.011443</td>
+      <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
+      <td>0.713223</td>
+      <td>0.003607</td>
       <td>9</td>
     </tr>
     <tr>
       <th>9</th>
       <td>{'model__alpha': 0.001, 'model__hidden_layer_s...</td>
-      <td>0.081699</td>
-      <td>0.007966</td>
+      <td>0.712592</td>
+      <td>0.002753</td>
       <td>10</td>
     </tr>
   </tbody>
@@ -1344,12 +1342,11 @@ Mejor score promedio en validación cruzada (F1):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-7 {color: black;}#sk-container-id-7 pre{padding: 0;}#sk-container-id-7 div.sk-toggleable {background-color: white;}#sk-container-id-7 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-7 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-7 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-7 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-7 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-7 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-7 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-7 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-7 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-7 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-7 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-7 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-7 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-7 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-7 div.sk-item {position: relative;z-index: 1;}#sk-container-id-7 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-7 div.sk-item::before, #sk-container-id-7 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-7 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-7 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-7 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-7 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-7 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-7 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-7 div.sk-label-container {text-align: center;}#sk-container-id-7 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-7 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-7" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
                  ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                                   Pipeline(steps=[(&#x27;scaler&#x27;,
                                                                    StandardScaler())]),
-                                                  [&#x27;banner_pos&#x27;, &#x27;year&#x27;,
-                                                   &#x27;month&#x27;, &#x27;day&#x27;,
+                                                  [&#x27;banner_pos&#x27;, &#x27;day&#x27;,
                                                    &#x27;hour_of_day&#x27;]),
                                                  (&#x27;cat_low&#x27;,
                                                   Pipeline(steps=[(&#x27;encoder&#x27;,
@@ -1368,12 +1365,11 @@ Mejor score promedio en validación cruzada (F1):
                 (&#x27;model&#x27;,
                  MLPClassifier(early_stopping=True,
                                hidden_layer_sizes=(100, 50), max_iter=50,
-                               n_iter_no_change=5, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-55" type="checkbox" ><label for="sk-estimator-id-55" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
+                               n_iter_no_change=5, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;preprocessor&#x27;,
                  ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                                   Pipeline(steps=[(&#x27;scaler&#x27;,
                                                                    StandardScaler())]),
-                                                  [&#x27;banner_pos&#x27;, &#x27;year&#x27;,
-                                                   &#x27;month&#x27;, &#x27;day&#x27;,
+                                                  [&#x27;banner_pos&#x27;, &#x27;day&#x27;,
                                                    &#x27;hour_of_day&#x27;]),
                                                  (&#x27;cat_low&#x27;,
                                                   Pipeline(steps=[(&#x27;encoder&#x27;,
@@ -1392,10 +1388,9 @@ Mejor score promedio en validación cruzada (F1):
                 (&#x27;model&#x27;,
                  MLPClassifier(early_stopping=True,
                                hidden_layer_sizes=(100, 50), max_iter=50,
-                               n_iter_no_change=5, random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-56" type="checkbox" ><label for="sk-estimator-id-56" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
+                               n_iter_no_change=5, random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                  Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler())]),
-                                 [&#x27;banner_pos&#x27;, &#x27;year&#x27;, &#x27;month&#x27;, &#x27;day&#x27;,
-                                  &#x27;hour_of_day&#x27;]),
+                                 [&#x27;banner_pos&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]),
                                 (&#x27;cat_low&#x27;,
                                  Pipeline(steps=[(&#x27;encoder&#x27;,
                                                   OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
@@ -1406,7 +1401,7 @@ Mejor score promedio en validación cruzada (F1):
                                  Pipeline(steps=[(&#x27;encoder&#x27;,
                                                   TargetEncoder(smooth=10))]),
                                  [&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;,
-                                  &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-57" type="checkbox" ><label for="sk-estimator-id-57" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>[&#x27;banner_pos&#x27;, &#x27;year&#x27;, &#x27;month&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-58" type="checkbox" ><label for="sk-estimator-id-58" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-59" type="checkbox" ><label for="sk-estimator-id-59" class="sk-toggleable__label sk-toggleable__label-arrow">cat_low</label><div class="sk-toggleable__content"><pre>[&#x27;C1&#x27;, &#x27;device_type&#x27;, &#x27;device_conn_type&#x27;, &#x27;C16&#x27;, &#x27;C18&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-60" type="checkbox" ><label for="sk-estimator-id-60" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-61" type="checkbox" ><label for="sk-estimator-id-61" class="sk-toggleable__label sk-toggleable__label-arrow">cat_high</label><div class="sk-toggleable__content"><pre>[&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;, &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-62" type="checkbox" ><label for="sk-estimator-id-62" class="sk-toggleable__label sk-toggleable__label-arrow">TargetEncoder</label><div class="sk-toggleable__content"><pre>TargetEncoder(smooth=10)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-63" type="checkbox" ><label for="sk-estimator-id-63" class="sk-toggleable__label sk-toggleable__label-arrow">MLPClassifier</label><div class="sk-toggleable__content"><pre>MLPClassifier(early_stopping=True, hidden_layer_sizes=(100, 50), max_iter=50,
+                                  &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox" ><label for="sk-estimator-id-21" class="sk-toggleable__label sk-toggleable__label-arrow">num</label><div class="sk-toggleable__content"><pre>[&#x27;banner_pos&#x27;, &#x27;day&#x27;, &#x27;hour_of_day&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-22" type="checkbox" ><label for="sk-estimator-id-22" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox" ><label for="sk-estimator-id-23" class="sk-toggleable__label sk-toggleable__label-arrow">cat_low</label><div class="sk-toggleable__content"><pre>[&#x27;C1&#x27;, &#x27;device_type&#x27;, &#x27;device_conn_type&#x27;, &#x27;C16&#x27;, &#x27;C18&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox" ><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" ><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">cat_high</label><div class="sk-toggleable__content"><pre>[&#x27;site_domain&#x27;, &#x27;site_category&#x27;, &#x27;app_domain&#x27;, &#x27;app_category&#x27;, &#x27;C19&#x27;, &#x27;C20&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox" ><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">TargetEncoder</label><div class="sk-toggleable__content"><pre>TargetEncoder(smooth=10)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox" ><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">MLPClassifier</label><div class="sk-toggleable__content"><pre>MLPClassifier(early_stopping=True, hidden_layer_sizes=(100, 50), max_iter=50,
               n_iter_no_change=5, random_state=42)</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1424,7 +1419,7 @@ Mejor score promedio en validación cruzada (F1):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de predicción del mejor modelo: 9.34 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de predicción del mejor modelo: 0.86 segundos
 </pre></div>
 </div>
 </div>
@@ -1479,27 +1474,27 @@ Mejor score promedio en validación cruzada (F1):
     <tr>
       <th>0</th>
       <td>Accuracy</td>
-      <td>0.833225</td>
+      <td>0.832095</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Precision</td>
-      <td>0.603860</td>
+      <td>0.612685</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Recall</td>
-      <td>0.050697</td>
+      <td>0.029310</td>
     </tr>
     <tr>
       <th>3</th>
       <td>F1-score</td>
-      <td>0.093540</td>
+      <td>0.055944</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ROC AUC</td>
-      <td>0.723551</td>
+      <td>0.712321</td>
     </tr>
   </tbody>
 </table>
@@ -1514,12 +1509,12 @@ Mejor score promedio en validación cruzada (F1):
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0     0.8365    0.9932    0.9082    166053
-           1     0.6039    0.0507    0.0935     33947
+           0     0.8339    0.9962    0.9079    166053
+           1     0.6127    0.0293    0.0559     33947
 
-    accuracy                         0.8332    200000
-   macro avg     0.7202    0.5219    0.5009    200000
-weighted avg     0.7970    0.8332    0.7699    200000
+    accuracy                         0.8321    200000
+   macro avg     0.7233    0.5128    0.4819    200000
+weighted avg     0.7963    0.8321    0.7633    200000
 </pre></div>
 </div>
 </div>
@@ -1564,13 +1559,13 @@ weighted avg     0.7970    0.8332    0.7699    200000
   <tbody>
     <tr>
       <th>Real 0</th>
-      <td>164924</td>
-      <td>1129</td>
+      <td>165424</td>
+      <td>629</td>
     </tr>
     <tr>
       <th>Real 1</th>
-      <td>32226</td>
-      <td>1721</td>
+      <td>32952</td>
+      <td>995</td>
     </tr>
   </tbody>
 </table>
@@ -1586,7 +1581,7 @@ weighted avg     0.7970    0.8332    0.7699    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4396708a6f4ec7d887b6346d896cb7d35049ff25c09e84c8fa853c65bd44d572.png" src="_images/4396708a6f4ec7d887b6346d896cb7d35049ff25c09e84c8fa853c65bd44d572.png" />
+<img alt="_images/19709c56ca4a8100037c85b66719505ef6b4dc58ed502f97ea3df6cf51862dae.png" src="_images/19709c56ca4a8100037c85b66719505ef6b4dc58ed502f97ea3df6cf51862dae.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1598,7 +1593,7 @@ weighted avg     0.7970    0.8332    0.7699    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d3db69ff66558b40f3bd2e8e91b62bcf14b91cc51ce2aeab814475c38832c81a.png" src="_images/d3db69ff66558b40f3bd2e8e91b62bcf14b91cc51ce2aeab814475c38832c81a.png" />
+<img alt="_images/a0554145e308a36c3ab171b4d3eb652efc05115ad4d93377b753d400f2afc271.png" src="_images/a0554145e308a36c3ab171b4d3eb652efc05115ad4d93377b753d400f2afc271.png" />
 </div>
 </div>
 </section>
@@ -1645,32 +1640,32 @@ weighted avg     0.7970    0.8332    0.7699    200000
     <tr>
       <th>0</th>
       <td>Accuracy</td>
-      <td>0.832300</td>
-      <td>0.833225</td>
+      <td>0.831465</td>
+      <td>0.832095</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Precision</td>
-      <td>0.605277</td>
-      <td>0.603860</td>
+      <td>0.518593</td>
+      <td>0.612685</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Recall</td>
-      <td>0.034465</td>
-      <td>0.050697</td>
+      <td>0.098595</td>
+      <td>0.029310</td>
     </tr>
     <tr>
       <th>3</th>
       <td>F1-score</td>
-      <td>0.065217</td>
-      <td>0.093540</td>
+      <td>0.165689</td>
+      <td>0.055944</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ROC AUC</td>
-      <td>0.715206</td>
-      <td>0.723551</td>
+      <td>0.720569</td>
+      <td>0.712321</td>
     </tr>
   </tbody>
 </table>
@@ -1714,22 +1709,22 @@ weighted avg     0.7970    0.8332    0.7699    200000
     <tr>
       <th>0</th>
       <td>Entrenamiento baseline</td>
-      <td>27.787282</td>
+      <td>277.147948</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Predicción baseline</td>
-      <td>2.695990</td>
+      <td>1.203010</td>
     </tr>
     <tr>
       <th>2</th>
       <td>GridSearchCV total</td>
-      <td>821.438544</td>
+      <td>1060.412184</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Predicción mejor modelo</td>
-      <td>9.339749</td>
+      <td>0.859700</td>
     </tr>
   </tbody>
 </table>
@@ -1738,7 +1733,7 @@ weighted avg     0.7970    0.8332    0.7699    200000
 </section>
 <section id="interpretacion-del-ajuste-de-hiperparametros">
 <h2>Interpretación del ajuste de hiperparámetros<a class="headerlink" href="#interpretacion-del-ajuste-de-hiperparametros" title="Link to this heading">#</a></h2>
-<p>El proceso de ajuste de hiperparámetros permite identificar configuraciones de la red neuronal con mejor desempeño que el modelo base. La comparación entre ambos modelos permite analizar si el aumento en complejidad y costo computacional se traduce efectivamente en mejoras en métricas clave como <strong>F1-score</strong>, <strong>recall</strong> y <strong>ROC AUC</strong>, especialmente relevantes en presencia de desbalance de clases.</p>
+<p>Por sí solo el ajuste de hiperparámetros no ofrece mejoras significativas en el desempeño comparado con el modelo base, pero se tuvo una mejora en la métrica precision de <code class="docutils literal notranslate"><span class="pre">0.52</span></code> a <code class="docutils literal notranslate"><span class="pre">0.61</span></code>. Veremos ahora el ajuste del umbral de clasificación para mejorar estos resultados.</p>
 </section>
 </section>
 <section id="ajuste-de-umbral-de-clasificacion">
@@ -1807,82 +1802,82 @@ weighted avg     0.7970    0.8332    0.7699    200000
     <tr>
       <th>0</th>
       <td>0.05</td>
-      <td>0.333100</td>
-      <td>0.198562</td>
-      <td>0.964710</td>
-      <td>0.329338</td>
+      <td>0.304355</td>
+      <td>0.192691</td>
+      <td>0.971397</td>
+      <td>0.321590</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.10</td>
-      <td>0.506615</td>
-      <td>0.237438</td>
-      <td>0.862167</td>
-      <td>0.372336</td>
+      <td>0.466300</td>
+      <td>0.225572</td>
+      <td>0.881286</td>
+      <td>0.359204</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.15</td>
-      <td>0.624690</td>
-      <td>0.272032</td>
-      <td>0.722626</td>
-      <td>0.395266</td>
+      <td>0.584310</td>
+      <td>0.255849</td>
+      <td>0.759242</td>
+      <td>0.382727</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.20</td>
-      <td>0.728215</td>
-      <td>0.314946</td>
-      <td>0.511621</td>
-      <td>0.389885</td>
+      <td>0.677705</td>
+      <td>0.284056</td>
+      <td>0.591157</td>
+      <td>0.383728</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.25</td>
-      <td>0.788010</td>
-      <td>0.363044</td>
-      <td>0.329956</td>
-      <td>0.345710</td>
+      <td>0.775360</td>
+      <td>0.343500</td>
+      <td>0.354995</td>
+      <td>0.349153</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0.30</td>
-      <td>0.823985</td>
-      <td>0.452112</td>
-      <td>0.174655</td>
-      <td>0.251971</td>
+      <td>0.811285</td>
+      <td>0.401372</td>
+      <td>0.227531</td>
+      <td>0.290425</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0.35</td>
-      <td>0.829700</td>
-      <td>0.494022</td>
-      <td>0.137538</td>
-      <td>0.215171</td>
+      <td>0.828250</td>
+      <td>0.480286</td>
+      <td>0.144608</td>
+      <td>0.222288</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.40</td>
-      <td>0.831350</td>
-      <td>0.513809</td>
-      <td>0.118921</td>
-      <td>0.193139</td>
+      <td>0.830265</td>
+      <td>0.500000</td>
+      <td>0.120305</td>
+      <td>0.193945</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.45</td>
-      <td>0.832730</td>
-      <td>0.555381</td>
-      <td>0.072819</td>
-      <td>0.128757</td>
+      <td>0.832390</td>
+      <td>0.571718</td>
+      <td>0.049901</td>
+      <td>0.091791</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.50</td>
-      <td>0.833225</td>
-      <td>0.603860</td>
-      <td>0.050697</td>
-      <td>0.093540</td>
+      <td>0.832095</td>
+      <td>0.612685</td>
+      <td>0.029310</td>
+      <td>0.055944</td>
     </tr>
   </tbody>
 </table>
@@ -1896,12 +1891,12 @@ weighted avg     0.7970    0.8332    0.7699    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold    0.150000
-accuracy     0.624690
-precision    0.272032
-recall       0.722626
-f1           0.395266
-Name: 2, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>threshold    0.200000
+accuracy     0.677705
+precision    0.284056
+recall       0.591157
+f1           0.383728
+Name: 3, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1914,7 +1909,7 @@ Name: 2, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor umbral según F1: 0.15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor umbral según F1: 0.20
 </pre></div>
 </div>
 </div>
@@ -1939,7 +1934,7 @@ Name: 2, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/caeb150aa8c923a84ab5b4e87b089f7a4e506036e461443dd978a2e93caf9cf6.png" src="_images/caeb150aa8c923a84ab5b4e87b089f7a4e506036e461443dd978a2e93caf9cf6.png" />
+<img alt="_images/536e27febcfda7e7ac6eb889d673dc915ac531264fdb368639aac9dd3036689e.png" src="_images/536e27febcfda7e7ac6eb889d673dc915ac531264fdb368639aac9dd3036689e.png" />
 </div>
 </div>
 </section>
@@ -1999,27 +1994,27 @@ Name: 2, dtype: float64
     <tr>
       <th>0</th>
       <td>Accuracy</td>
-      <td>0.624690</td>
+      <td>0.677705</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Precision</td>
-      <td>0.272032</td>
+      <td>0.284056</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Recall</td>
-      <td>0.722626</td>
+      <td>0.591157</td>
     </tr>
     <tr>
       <th>3</th>
       <td>F1-score</td>
-      <td>0.395266</td>
+      <td>0.383728</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ROC AUC</td>
-      <td>0.723551</td>
+      <td>0.712321</td>
     </tr>
   </tbody>
 </table>
@@ -2034,12 +2029,12 @@ Name: 2, dtype: float64
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0     0.9143    0.6047    0.7279    166053
-           1     0.2720    0.7226    0.3953     33947
+           0     0.8927    0.6954    0.7818    166053
+           1     0.2841    0.5912    0.3837     33947
 
-    accuracy                         0.6247    200000
-   macro avg     0.5931    0.6636    0.5616    200000
-weighted avg     0.8053    0.6247    0.6715    200000
+    accuracy                         0.6777    200000
+   macro avg     0.5884    0.6433    0.5828    200000
+weighted avg     0.7894    0.6777    0.7142    200000
 </pre></div>
 </div>
 </div>
@@ -2084,13 +2079,13 @@ weighted avg     0.8053    0.6247    0.6715    200000
   <tbody>
     <tr>
       <th>Real 0</th>
-      <td>100407</td>
-      <td>65646</td>
+      <td>115473</td>
+      <td>50580</td>
     </tr>
     <tr>
       <th>Real 1</th>
-      <td>9416</td>
-      <td>24531</td>
+      <td>13879</td>
+      <td>20068</td>
     </tr>
   </tbody>
 </table>
@@ -2106,7 +2101,7 @@ weighted avg     0.8053    0.6247    0.6715    200000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5b8c023a407a8940564959805b3b4dbd44d5af6d85639c204bf5b6df2d98c5c7.png" src="_images/5b8c023a407a8940564959805b3b4dbd44d5af6d85639c204bf5b6df2d98c5c7.png" />
+<img alt="_images/b35c5300230e03e9f1499d22f450eb4f1df7503c86fe53cb47ad6f329557f080.png" src="_images/b35c5300230e03e9f1499d22f450eb4f1df7503c86fe53cb47ad6f329557f080.png" />
 </div>
 </div>
 </section>
@@ -2160,37 +2155,37 @@ weighted avg     0.8053    0.6247    0.6715    200000
     <tr>
       <th>0</th>
       <td>Accuracy</td>
-      <td>0.832300</td>
-      <td>0.833225</td>
-      <td>0.624690</td>
+      <td>0.831465</td>
+      <td>0.832095</td>
+      <td>0.677705</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Precision</td>
-      <td>0.605277</td>
-      <td>0.603860</td>
-      <td>0.272032</td>
+      <td>0.518593</td>
+      <td>0.612685</td>
+      <td>0.284056</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Recall</td>
-      <td>0.034465</td>
-      <td>0.050697</td>
-      <td>0.722626</td>
+      <td>0.098595</td>
+      <td>0.029310</td>
+      <td>0.591157</td>
     </tr>
     <tr>
       <th>3</th>
       <td>F1-score</td>
-      <td>0.065217</td>
-      <td>0.093540</td>
-      <td>0.395266</td>
+      <td>0.165689</td>
+      <td>0.055944</td>
+      <td>0.383728</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ROC AUC</td>
-      <td>0.715206</td>
-      <td>0.723551</td>
-      <td>0.723551</td>
+      <td>0.720569</td>
+      <td>0.712321</td>
+      <td>0.712321</td>
     </tr>
   </tbody>
 </table>
@@ -2204,7 +2199,7 @@ weighted avg     0.8053    0.6247    0.6715    200000
 <p>El ajuste de umbral produjo una disminución en accuracy y precision, pero permitió incrementar el recall y mejorar el F1-score. Este comportamiento es esperable en problemas de clasificación desbalanceada, donde reducir el umbral hace al modelo más sensible a la clase positiva, a costa de incrementar los falsos positivos.</p>
 <p>En este contexto, la mejora en F1-score resulta relevante, ya que indica un mejor equilibrio entre precision y recall respecto al modelo con umbral estándar.</p>
 <p>El modelo baseline y el modelo ajustado con GridSearchCV mostraron valores de accuracy relativamente altos, pero un desempeño muy limitado en la detección de la clase positiva, reflejado en recalls y F1-scores bajos. Esto indica que, con el umbral estándar de 0.5, el clasificador tendía a favorecer la clase mayoritaria.</p>
-<p>En contraste, el ajuste de umbral produjo una reducción en accuracy y precision, pero permitió incrementar de manera sustancial el recall y el F1-score. En particular, el F1-score aumentó de 0.1073 a 0.3748 y el recall de 0.0594 a 0.5662, lo que evidencia una mejora significativa en la capacidad del modelo para identificar clics.</p>
+<p>En contraste, el ajuste de umbral produjo una reducción en accuracy y precision, pero permitió incrementar de manera sustancial el recall y el F1-score. En particular, el F1-score aumentó de 0.055944 a 0.383728 y el recall de 0.029310 a 0.591157, lo que evidencia una mejora significativa en la capacidad del modelo para identificar clics.</p>
 <p>Por esta razón, el modelo ajustado con umbral optimizado se considera el más adecuado dentro del entorno scikit-learn, ya que ofrece un mejor equilibrio entre precision y recall en un contexto de clases desbalanceadas.</p>
 </section>
 </section>
