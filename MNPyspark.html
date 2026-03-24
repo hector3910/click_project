@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'MNPyspark';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Modelado con PySpark" href="pyspark.html" />
     <link rel="prev" title="1. Análisis Exploratorio de Datos (EDA)" href="01_eda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +185,7 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="pyspark.html">3. Modelado con PySpark</a></li>
 
 
 </ul>
@@ -428,26 +430,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-general-de-lime">Interpretación general de LIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-de-la-seccion">Conclusión de la sección</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-de-los-resultados-obtenidos-con-lime">Discusión de los resultados obtenidos con LIME</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">Modelado con PySpark</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno-en-pyspark">Preparación del entorno en PySpark</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-la-sesion-de-spark">Creación de la sesión de Spark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-dataset-en-spark">Lectura del dataset en Spark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-temporales-en-pyspark">Ingeniería de variables temporales en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-final-antes-del-modelado">Verificación final antes del modelado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables-para-pyspark">Selección de variables para PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-dataset-para-modelado">Preparación del dataset para modelado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-del-dataset-en-entrenamiento-y-prueba">División del dataset en entrenamiento y prueba</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-preprocesamiento-en-pyspark">Construcción del preprocesamiento en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacion-del-numero-final-de-caracteristicas">Determinación del número final de características</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-entrenamiento-y-evaluacion">Función de entrenamiento y evaluación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuraciones-evaluadas">Configuraciones evaluadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-evaluacion-de-configuraciones">Entrenamiento y evaluación de configuraciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-resultados-en-pyspark">Resumen de resultados en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-mejor-modelo-de-pyspark">Selección del mejor modelo de PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion-del-mejor-modelo">Matriz de confusión del mejor modelo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados-de-pyspark">Interpretación de los resultados de PySpark</a></li>
 </ul>
 </li>
 </ul>
@@ -2273,8 +2255,8 @@ MLPClassifier(early_stopping=True, hidden_layer_sizes=(100, 50), max_iter=50,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensión X_train transformado: (800000, 40)
-Dimensión X_test transformado: (200000, 40)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensión X_train transformado: (800000, 38)
+Dimensión X_test transformado: (200000, 38)
 </pre></div>
 </div>
 </div>
@@ -2295,15 +2277,16 @@ Dimensión X_test transformado: (200000, 40)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de variables transformadas: 40
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de variables transformadas: 38
 Primeras 20 variables:
-[&#39;num__banner_pos&#39; &#39;num__year&#39; &#39;num__month&#39; &#39;num__day&#39; &#39;num__hour_of_day&#39;
- &#39;cat_low__C1_1001&#39; &#39;cat_low__C1_1002&#39; &#39;cat_low__C1_1005&#39;
- &#39;cat_low__C1_1007&#39; &#39;cat_low__C1_1008&#39; &#39;cat_low__C1_1010&#39;
- &#39;cat_low__C1_1012&#39; &#39;cat_low__device_type_0&#39; &#39;cat_low__device_type_1&#39;
+[&#39;num__banner_pos&#39; &#39;num__day&#39; &#39;num__hour_of_day&#39; &#39;cat_low__C1_1001&#39;
+ &#39;cat_low__C1_1002&#39; &#39;cat_low__C1_1005&#39; &#39;cat_low__C1_1007&#39;
+ &#39;cat_low__C1_1008&#39; &#39;cat_low__C1_1010&#39; &#39;cat_low__C1_1012&#39;
+ &#39;cat_low__device_type_0&#39; &#39;cat_low__device_type_1&#39;
  &#39;cat_low__device_type_2&#39; &#39;cat_low__device_type_4&#39;
  &#39;cat_low__device_type_5&#39; &#39;cat_low__device_conn_type_0&#39;
- &#39;cat_low__device_conn_type_2&#39; &#39;cat_low__device_conn_type_3&#39;]
+ &#39;cat_low__device_conn_type_2&#39; &#39;cat_low__device_conn_type_3&#39;
+ &#39;cat_low__device_conn_type_5&#39; &#39;cat_low__C16_20&#39;]
 </pre></div>
 </div>
 </div>
@@ -2390,24 +2373,24 @@ Primeras 20 variables:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 0
 Valor real: 0
-Probabilidad estimada de click: 0.0409
+Probabilidad estimada de click: 0.0476
 Predicción con umbral 0.5: 0
-Predicción con umbral ajustado (0.15): 0
+Predicción con umbral ajustado (0.20): 0
 
 Variables más influyentes según LIME:
-cat_high__site_domain &lt;= 0.12: -0.1333
-cat_low__C16_250 &lt;= 0.00: 0.0916
-cat_low__device_type_5 &lt;= 0.00: 0.0902
-cat_low__C18_1 &lt;= 0.00: 0.0854
-cat_low__device_type_4 &lt;= 0.00: 0.0745
-cat_low__C1_1010 &lt;= 0.00: 0.0600
-cat_low__device_conn_type_3 &lt;= 0.00: 0.0509
-cat_low__device_conn_type_5 &lt;= 0.00: 0.0465
-cat_low__C16_480 &lt;= 0.00: 0.0460
-cat_low__C1_1002 &lt;= 0.00: 0.0444
+cat_high__site_domain &lt;= 0.12: -0.1462
+cat_low__C16_480 &lt;= 0.00: -0.1264
+cat_low__C18_1 &lt;= 0.00: 0.1064
+cat_low__C1_1010 &lt;= 0.00: 0.0945
+cat_low__C16_36 &lt;= 0.00: 0.0894
+cat_low__C16_250 &lt;= 0.00: 0.0866
+cat_low__C1_1012 &lt;= 0.00: -0.0816
+cat_low__C16_90 &lt;= 0.00: 0.0790
+cat_low__C1_1007 &lt;= 0.00: 0.0651
+cat_low__device_type_5 &lt;= 0.00: 0.0619
 </pre></div>
 </div>
-<img alt="_images/af7cede1a5e9916b675ceaf84d82b951f5b73eaba30b4b7acf38c37c292c409f.png" src="_images/af7cede1a5e9916b675ceaf84d82b951f5b73eaba30b4b7acf38c37c292c409f.png" />
+<img alt="_images/eb03326476f5b4741b1fb708b06bb3c432b9a7a32db81de55ef54e3c3183f288.png" src="_images/eb03326476f5b4741b1fb708b06bb3c432b9a7a32db81de55ef54e3c3183f288.png" />
 </div>
 </div>
 </section>
@@ -2458,15 +2441,15 @@ cat_low__C1_1002 &lt;= 0.00: 0.0444
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cantidad de verdaderos positivos: 24531
-Cantidad de verdaderos negativos: 100407
-Cantidad de falsos positivos: 65646
-Cantidad de falsos negativos: 9416
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cantidad de verdaderos positivos: 20068
+Cantidad de verdaderos negativos: 115473
+Cantidad de falsos positivos: 50580
+Cantidad de falsos negativos: 13879
 
 Ejemplo TP: 8
 Ejemplo TN: 0
-Ejemplo FP: 6
-Ejemplo FN: 68
+Ejemplo FP: 1
+Ejemplo FN: 16
 </pre></div>
 </div>
 </div>
@@ -2487,24 +2470,24 @@ Ejemplo FN: 68
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 8
 Valor real: 1
-Probabilidad estimada de click: 0.2674
+Probabilidad estimada de click: 0.2497
 Predicción con umbral 0.5: 0
-Predicción con umbral ajustado (0.15): 1
+Predicción con umbral ajustado (0.20): 1
 
 Variables más influyentes según LIME:
-cat_high__site_domain &gt; 0.21: 0.1717
-cat_low__device_type_5 &lt;= 0.00: 0.1016
-cat_low__C16_250 &lt;= 0.00: 0.0878
-cat_low__C18_1 &lt;= 0.00: 0.0873
-cat_low__C1_1010 &lt;= 0.00: 0.0730
-cat_low__device_type_4 &lt;= 0.00: 0.0683
-cat_low__device_conn_type_3 &lt;= 0.00: 0.0493
-cat_low__C16_36 &lt;= 0.00: 0.0458
-cat_low__C1_1002 &lt;= 0.00: 0.0446
-cat_low__device_conn_type_5 &lt;= 0.00: 0.0433
+cat_high__site_domain &gt; 0.21: 0.2002
+cat_low__C1_1007 &lt;= 0.00: 0.1299
+cat_low__C1_1001 &lt;= 0.00: 0.1184
+cat_low__C16_90 &lt;= 0.00: 0.1149
+cat_low__C18_1 &lt;= 0.00: 0.0992
+cat_low__device_type_4 &lt;= 0.00: 0.0981
+cat_low__C1_1010 &lt;= 0.00: 0.0946
+cat_low__device_type_5 &lt;= 0.00: 0.0856
+cat_low__C16_250 &lt;= 0.00: 0.0827
+cat_low__C16_36 &lt;= 0.00: 0.0805
 </pre></div>
 </div>
-<img alt="_images/3ec5f9d1034c4a7b3d4757e9c17bd94f7ce763ce9f886342718542b266d649a7.png" src="_images/3ec5f9d1034c4a7b3d4757e9c17bd94f7ce763ce9f886342718542b266d649a7.png" />
+<img alt="_images/0563b14c5cfceb559b70f344c5d8d459447978571a7782ab02398d26d42f0e9a.png" src="_images/0563b14c5cfceb559b70f344c5d8d459447978571a7782ab02398d26d42f0e9a.png" />
 </div>
 </div>
 </section>
@@ -2522,26 +2505,26 @@ cat_low__device_conn_type_5 &lt;= 0.00: 0.0433
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 68
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 16
 Valor real: 1
-Probabilidad estimada de click: 0.0441
+Probabilidad estimada de click: 0.1555
 Predicción con umbral 0.5: 0
-Predicción con umbral ajustado (0.15): 0
+Predicción con umbral ajustado (0.20): 0
 
 Variables más influyentes según LIME:
-cat_high__site_domain &lt;= 0.12: -0.1361
-cat_low__C1_1001 &lt;= 0.00: 0.0962
-cat_low__device_type_5 &lt;= 0.00: 0.0906
-cat_low__C18_1 &lt;= 0.00: 0.0836
-cat_low__C16_250 &lt;= 0.00: 0.0801
-cat_low__device_conn_type_5 &lt;= 0.00: 0.0789
-cat_low__C1_1010 &lt;= 0.00: 0.0744
-cat_low__device_type_4 &lt;= 0.00: 0.0575
-cat_low__C16_36 &lt;= 0.00: 0.0550
-cat_low__C16_480 &lt;= 0.00: 0.0538
+cat_high__site_domain &lt;= 0.12: -0.1528
+cat_low__C16_36 &lt;= 0.00: 0.1134
+cat_low__C18_1 &lt;= 0.00: 0.1095
+cat_low__C1_1010 &lt;= 0.00: 0.1008
+cat_low__C1_1001 &lt;= 0.00: 0.0894
+cat_low__device_type_4 &lt;= 0.00: 0.0852
+cat_low__C16_250 &lt;= 0.00: 0.0767
+cat_low__device_conn_type_5 &lt;= 0.00: 0.0739
+cat_low__C18_0 &lt;= 0.00: 0.0724
+cat_low__device_type_5 &lt;= 0.00: 0.0649
 </pre></div>
 </div>
-<img alt="_images/1501af9c7ac40dad4a306f14644ad16f34d04b18b051ef6e3294bedcbd9f8125.png" src="_images/1501af9c7ac40dad4a306f14644ad16f34d04b18b051ef6e3294bedcbd9f8125.png" />
+<img alt="_images/159bd30cc809aa633b30e5279ac48db5baee149d5e98b0e92e1004dbe5075204.png" src="_images/159bd30cc809aa633b30e5279ac48db5baee149d5e98b0e92e1004dbe5075204.png" />
 </div>
 </div>
 </section>
@@ -2559,26 +2542,26 @@ cat_low__C16_480 &lt;= 0.00: 0.0538
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Índice analizado: 1
 Valor real: 0
-Probabilidad estimada de click: 0.1917
+Probabilidad estimada de click: 0.2071
 Predicción con umbral 0.5: 0
-Predicción con umbral ajustado (0.15): 1
+Predicción con umbral ajustado (0.20): 1
 
 Variables más influyentes según LIME:
-cat_high__site_domain &gt; 0.21: 0.1687
-cat_low__C16_250 &lt;= 0.00: 0.0899
-cat_low__C18_1 &lt;= 0.00: 0.0854
-cat_low__device_type_5 &lt;= 0.00: 0.0723
-cat_low__C16_20 &lt;= 0.00: 0.0717
-cat_low__C1_1010 &lt;= 0.00: 0.0679
-cat_low__device_type_4 &lt;= 0.00: 0.0577
-cat_low__C1_1002 &gt; 0.00: -0.0495
-cat_low__device_conn_type_3 &lt;= 0.00: 0.0463
-cat_low__C1_1007 &lt;= 0.00: 0.0274
+cat_low__C16_36 &lt;= 0.00: 0.1136
+cat_low__C18_1 &lt;= 0.00: 0.1094
+cat_low__C16_320 &lt;= 0.00: 0.1060
+cat_low__C1_1010 &lt;= 0.00: 0.1007
+cat_low__C1_1007 &lt;= 0.00: -0.0999
+cat_low__C16_250 &lt;= 0.00: 0.0936
+0.00 &lt; cat_low__C18_0 &lt;= 1.00: -0.0722
+cat_low__device_type_4 &lt;= 0.00: 0.0685
+cat_low__C18_3 &lt;= 0.00: 0.0573
+cat_low__C1_1008 &lt;= 0.00: 0.0437
 </pre></div>
 </div>
-<img alt="_images/4f34bc49bed3af3198b0a8728eeb8c8899cb40f97c0a4e6c6e939fcc6d0e7e66.png" src="_images/4f34bc49bed3af3198b0a8728eeb8c8899cb40f97c0a4e6c6e939fcc6d0e7e66.png" />
+<img alt="_images/bb80406e48b510d38ece8425cb541c4932e0135db78b5c6da6625594ba831356.png" src="_images/bb80406e48b510d38ece8425cb541c4932e0135db78b5c6da6625594ba831356.png" />
 </div>
 </div>
 </section>
@@ -2607,889 +2590,9 @@ cat_low__C1_1007 &lt;= 0.00: 0.0274
 </section>
 <section id="discusion-de-los-resultados-obtenidos-con-lime">
 <h2>Discusión de los resultados obtenidos con LIME<a class="headerlink" href="#discusion-de-los-resultados-obtenidos-con-lime" title="Link to this heading">#</a></h2>
-<p>El análisis local con LIME permitió observar que las predicciones del modelo final están influenciadas de manera recurrente por un conjunto reducido de variables, entre las que destacan <code class="docutils literal notranslate"><span class="pre">C15</span></code>, <code class="docutils literal notranslate"><span class="pre">C16</span></code>, <code class="docutils literal notranslate"><span class="pre">device_type</span></code>, algunas categorías de <code class="docutils literal notranslate"><span class="pre">site_category</span></code> y ciertas categorías de <code class="docutils literal notranslate"><span class="pre">app_category</span></code>. En particular, <code class="docutils literal notranslate"><span class="pre">C15</span></code> y varias categorías del sitio tienden a empujar la predicción hacia la clase positiva, mientras que <code class="docutils literal notranslate"><span class="pre">C16</span></code> aparece repetidamente como una de las señales más influyentes hacia la clase negativa.</p>
+<p>El análisis local con LIME permitió observar que las predicciones del modelo final están influenciadas de manera recurrente por un conjunto reducido de variables, entre las que destacan  <code class="docutils literal notranslate"><span class="pre">C16</span></code>, <code class="docutils literal notranslate"><span class="pre">device_type</span></code>, algunas categorías de <code class="docutils literal notranslate"><span class="pre">site_category</span></code> y ciertas categorías de <code class="docutils literal notranslate"><span class="pre">app_category</span></code>. Varias categorías del sitio tienden a empujar la predicción hacia la clase positiva, mientras que <code class="docutils literal notranslate"><span class="pre">C16</span></code> aparece repetidamente como una de las señales más influyentes hacia la clase negativa.</p>
 <p>Además, las explicaciones mostraron que tanto los verdaderos positivos como los falsos positivos presentan probabilidades estimadas muy cercanas al umbral optimizado de decisión (<code class="docutils literal notranslate"><span class="pre">0.20</span></code>). Esto sugiere que una parte importante del aumento en recall obtenido tras el ajuste de umbral proviene de clasificar como positivos casos fronterizos que, bajo el umbral estándar de <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, habrían sido clasificados como negativos.</p>
 <p>Por otra parte, el análisis de falsos negativos evidenció que, incluso cuando existen señales locales que favorecen la clase positiva, algunas variables numéricas con contribución negativa —especialmente <code class="docutils literal notranslate"><span class="pre">C16</span></code>, y en ciertos casos <code class="docutils literal notranslate"><span class="pre">C18</span></code>— pueden dominar la decisión final del modelo. En conjunto, estos hallazgos refuerzan la idea de que el modelo logra recuperar más casos positivos gracias al threshold tuning, pero a costa de una mayor sensibilidad a observaciones ambiguas, lo que explica la reducción observada en la precisión.</p>
-</section>
-</section>
-<section id="modelado-con-pyspark">
-<h1>Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h1>
-<p>En esta sección se implementa una versión distribuida del problema de clasificación usando <strong>PySpark</strong> y el modelo <code class="docutils literal notranslate"><span class="pre">MultilayerPerceptronClassifier</span></code>. A diferencia de la parte realizada con scikit-learn, aquí se trabaja en el entorno de Spark, lo que permite escalar el procesamiento a volúmenes de datos más grandes y evaluar el comportamiento del modelo en un marco distribuido.</p>
-<p>Dado el alto costo computacional observado durante las primeras pruebas en entorno local, se optó por una estrategia de modelado más controlada, utilizando un conjunto reducido de variables y un número limitado de configuraciones de hiperparámetros. Esta decisión permite cumplir el objetivo comparativo del proyecto sin comprometer la viabilidad de la ejecución.</p>
-<p>El flujo de esta sección incluye:</p>
-<ul class="simple">
-<li><p>selección de variables para PySpark,</p></li>
-<li><p>preparación del dataset y división en entrenamiento y prueba,</p></li>
-<li><p>codificación de variables categóricas mediante <code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> y <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>,</p></li>
-<li><p>ensamblaje y escalado de variables con <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> y <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>,</p></li>
-<li><p>entrenamiento de varias configuraciones del <code class="docutils literal notranslate"><span class="pre">MultilayerPerceptronClassifier</span></code>,</p></li>
-<li><p>evaluación de métricas de clasificación,</p></li>
-<li><p>medición de tiempos de entrenamiento y predicción,</p></li>
-<li><p>y selección del mejor modelo de PySpark.</p></li>
-</ul>
-</section>
-<section id="preparacion-del-entorno-en-pyspark">
-<h1>Preparación del entorno en PySpark<a class="headerlink" href="#preparacion-del-entorno-en-pyspark" title="Link to this heading">#</a></h1>
-<p>Antes de entrenar el modelo en PySpark, es necesario:</p>
-<ul class="simple">
-<li><p>crear la sesión de Spark,</p></li>
-<li><p>leer el dataset completo,</p></li>
-<li><p>y reconstruir en Spark las variables temporales derivadas de <code class="docutils literal notranslate"><span class="pre">hour</span></code>, de forma consistente con la sección trabajada en scikit-learn.</p></li>
-</ul>
-<p>Estas variables serán utilizadas posteriormente como parte de la entrada del modelo distribuido.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="creacion-de-la-sesion-de-spark">
-<h2>Creación de la sesión de Spark<a class="headerlink" href="#creacion-de-la-sesion-de-spark" title="Link to this heading">#</a></h2>
-<p>Se configura una sesión local de Spark. En Windows, se fuerza el uso de <code class="docutils literal notranslate"><span class="pre">localhost</span></code> para evitar errores relacionados con la resolución del host del driver.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPARK_LOCAL_IP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPARK_LOCAL_HOSTNAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
-
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
-    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Avazu_CTR_PySpark_MLP&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.host&quot;</span><span class="p">,</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.bindAddress&quot;</span><span class="p">,</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;6g&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.sql.shuffle.partitions&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.default.parallelism&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.ui.enabled&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-
-<span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="lectura-del-dataset-en-spark">
-<h2>Lectura del dataset en Spark<a class="headerlink" href="#lectura-del-dataset-en-spark" title="Link to this heading">#</a></h2>
-<p>Se carga el dataset original en formato CSV para trabajar la fase distribuida del proyecto.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
-    <span class="n">file_path</span><span class="p">,</span>
-    <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Número de columnas:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">spark_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-<span class="n">spark_df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
-<span class="n">spark_df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">246</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">file_path</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Número de columnas:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">spark_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;file_path&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="ingenieria-de-variables-temporales-en-pyspark">
-<h2>Ingeniería de variables temporales en PySpark<a class="headerlink" href="#ingenieria-de-variables-temporales-en-pyspark" title="Link to this heading">#</a></h2>
-<p>La variable <code class="docutils literal notranslate"><span class="pre">hour</span></code>, originalmente en formato <code class="docutils literal notranslate"><span class="pre">YYMMDDHH</span></code>, se transforma para derivar nuevas variables temporales:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">hour_of_day</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">day_of_week</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time_slot</span></code></p></li>
-</ul>
-<p>Estas variables permiten capturar mejor el contexto temporal de la impresión del anuncio.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;hour_str&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lpad</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">),</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">))</span>
-
-<span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
-    <span class="s2">&quot;datetime_str&quot;</span><span class="p">,</span>
-    <span class="n">F</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-        <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;20&quot;</span><span class="p">),</span>
-        <span class="n">F</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="s2">&quot;hour_str&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">),</span>
-        <span class="n">F</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="s2">&quot;hour_str&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">),</span>
-        <span class="n">F</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="s2">&quot;hour_str&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">),</span>
-        <span class="n">F</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="s2">&quot;hour_str&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;:00:00&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">&quot;datetime_str&quot;</span><span class="p">))</span>
-<span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">))</span>
-<span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">dayofweek</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
-    <span class="s2">&quot;day_of_week&quot;</span><span class="p">,</span>
-    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Sunday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Monday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Tuesday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Wednesday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Thursday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;day_of_week_num&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;Friday&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="s2">&quot;Saturday&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
-    <span class="s2">&quot;time_slot&quot;</span><span class="p">,</span>
-    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;madrugada&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">),</span> <span class="s2">&quot;mañana&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">when</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">),</span> <span class="s2">&quot;tarde&quot;</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="s2">&quot;noche&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">spark_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;hour&quot;</span><span class="p">,</span> <span class="s2">&quot;hour_of_day&quot;</span><span class="p">,</span> <span class="s2">&quot;day_of_week&quot;</span><span class="p">,</span> <span class="s2">&quot;time_slot&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+-----------+-----------+---------+
-|hour    |hour_of_day|day_of_week|time_slot|
-+--------+-----------+-----------+---------+
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-|14102100|0          |Tuesday    |madrugada|
-+--------+-----------+-----------+---------+
-only showing top 10 rows
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="verificacion-final-antes-del-modelado">
-<h2>Verificación final antes del modelado<a class="headerlink" href="#verificacion-final-antes-del-modelado" title="Link to this heading">#</a></h2>
-<p>Con estas transformaciones ya queda listo el dataframe <code class="docutils literal notranslate"><span class="pre">spark_df</span></code>, que será usado en la siguiente sección para construir el pipeline de preprocesamiento y entrenar el modelo MLP en PySpark.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
-    <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;banner_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;site_category&quot;</span><span class="p">,</span> <span class="s2">&quot;app_category&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;device_type&quot;</span><span class="p">,</span> <span class="s2">&quot;device_conn_type&quot;</span><span class="p">,</span> <span class="s2">&quot;C14&quot;</span><span class="p">,</span> <span class="s2">&quot;C15&quot;</span><span class="p">,</span> <span class="s2">&quot;C16&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;hour_of_day&quot;</span><span class="p">,</span> <span class="s2">&quot;day_of_week&quot;</span><span class="p">,</span> <span class="s2">&quot;time_slot&quot;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+----+----------+-------------+------------+-----------+----------------+-----+---+---+-----------+-----------+---------+
-|click|C1  |banner_pos|site_category|app_category|device_type|device_conn_type|C14  |C15|C16|hour_of_day|day_of_week|time_slot|
-+-----+----+----------+-------------+------------+-----------+----------------+-----+---+---+-----------+-----------+---------+
-|0    |1005|0         |28905ebd     |07d7df22    |1          |2               |15706|320|50 |0          |Tuesday    |madrugada|
-|0    |1005|0         |28905ebd     |07d7df22    |1          |0               |15704|320|50 |0          |Tuesday    |madrugada|
-|0    |1005|0         |28905ebd     |07d7df22    |1          |0               |15704|320|50 |0          |Tuesday    |madrugada|
-|0    |1005|0         |28905ebd     |07d7df22    |1          |0               |15706|320|50 |0          |Tuesday    |madrugada|
-|0    |1005|1         |0569f928     |07d7df22    |1          |0               |18993|320|50 |0          |Tuesday    |madrugada|
-+-----+----+----------+-------------+------------+-----------+----------------+-----+---+---+-----------+-----------+---------+
-only showing top 5 rows
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml.feature</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">VectorAssembler</span><span class="p">,</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultilayerPerceptronClassifier</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="seleccion-de-variables-para-pyspark">
-<h2>Selección de variables para PySpark<a class="headerlink" href="#seleccion-de-variables-para-pyspark" title="Link to this heading">#</a></h2>
-<p>Para esta fase se utiliza una versión reducida del conjunto de variables, priorizando aquellas que ya mostraron utilidad en el entorno de scikit-learn y evitando variables de cardinalidad extremadamente alta que elevan demasiado el costo computacional del <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> y del entrenamiento de la red neuronal en Spark.</p>
-<p>Esta decisión es metodológicamente razonable, ya que permite mantener consistencia con el modelo anterior y facilitar la comparación entre ambos entornos.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_features_spark</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;C1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;banner_pos&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;site_category&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;app_category&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;device_type&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;device_conn_type&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;day_of_week&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;time_slot&quot;</span>
-<span class="p">]</span>
-
-<span class="n">numeric_features_spark</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;C14&quot;</span><span class="p">,</span> <span class="s2">&quot;C15&quot;</span><span class="p">,</span> <span class="s2">&quot;C16&quot;</span><span class="p">,</span> <span class="s2">&quot;C17&quot;</span><span class="p">,</span> <span class="s2">&quot;C18&quot;</span><span class="p">,</span> <span class="s2">&quot;C19&quot;</span><span class="p">,</span> <span class="s2">&quot;C20&quot;</span><span class="p">,</span> <span class="s2">&quot;C21&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;hour_of_day&quot;</span>
-<span class="p">]</span>
-
-<span class="n">selected_features_pyspark</span> <span class="o">=</span> <span class="n">categorical_features_spark</span> <span class="o">+</span> <span class="n">numeric_features_spark</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables categóricas:&quot;</span><span class="p">,</span> <span class="n">categorical_features_spark</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables numéricas:&quot;</span><span class="p">,</span> <span class="n">numeric_features_spark</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total de variables usadas en PySpark:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_features_pyspark</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variables categóricas: [&#39;C1&#39;, &#39;banner_pos&#39;, &#39;site_category&#39;, &#39;app_category&#39;, &#39;device_type&#39;, &#39;device_conn_type&#39;, &#39;day_of_week&#39;, &#39;time_slot&#39;]
-Variables numéricas: [&#39;C14&#39;, &#39;C15&#39;, &#39;C16&#39;, &#39;C17&#39;, &#39;C18&#39;, &#39;C19&#39;, &#39;C20&#39;, &#39;C21&#39;, &#39;hour_of_day&#39;]
-Total de variables usadas en PySpark: 17
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="preparacion-del-dataset-para-modelado">
-<h2>Preparación del dataset para modelado<a class="headerlink" href="#preparacion-del-dataset-para-modelado" title="Link to this heading">#</a></h2>
-<p>Se construye el dataset de PySpark conservando únicamente las variables seleccionadas y la variable objetivo <code class="docutils literal notranslate"><span class="pre">click</span></code>. Además, se convierte la variable objetivo a formato numérico tipo <code class="docutils literal notranslate"><span class="pre">double</span></code>, requerido por el clasificador de Spark.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;click&quot;</span>
-
-<span class="n">spark_model_df</span> <span class="o">=</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">selected_features_pyspark</span> <span class="o">+</span> <span class="p">[</span><span class="n">target</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">spark_model_df</span> <span class="o">=</span> <span class="n">spark_model_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columnas del dataset de modelado:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spark_model_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-
-<span class="n">spark_model_df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas del dataset de modelado:
-[&#39;C1&#39;, &#39;banner_pos&#39;, &#39;site_category&#39;, &#39;app_category&#39;, &#39;device_type&#39;, &#39;device_conn_type&#39;, &#39;day_of_week&#39;, &#39;time_slot&#39;, &#39;C14&#39;, &#39;C15&#39;, &#39;C16&#39;, &#39;C17&#39;, &#39;C18&#39;, &#39;C19&#39;, &#39;C20&#39;, &#39;C21&#39;, &#39;hour_of_day&#39;, &#39;click&#39;]
-+----+----------+-------------+------------+-----------+----------------+-----------+---------+-----+---+---+----+---+---+------+---+-----------+-----+
-|C1  |banner_pos|site_category|app_category|device_type|device_conn_type|day_of_week|time_slot|C14  |C15|C16|C17 |C18|C19|C20   |C21|hour_of_day|click|
-+----+----------+-------------+------------+-----------+----------------+-----------+---------+-----+---+---+----+---+---+------+---+-----------+-----+
-|1005|0         |28905ebd     |07d7df22    |1          |2               |Tuesday    |madrugada|15706|320|50 |1722|0  |35 |-1    |79 |0          |0.0  |
-|1005|0         |28905ebd     |07d7df22    |1          |0               |Tuesday    |madrugada|15704|320|50 |1722|0  |35 |100084|79 |0          |0.0  |
-|1005|0         |28905ebd     |07d7df22    |1          |0               |Tuesday    |madrugada|15704|320|50 |1722|0  |35 |100084|79 |0          |0.0  |
-|1005|0         |28905ebd     |07d7df22    |1          |0               |Tuesday    |madrugada|15706|320|50 |1722|0  |35 |100084|79 |0          |0.0  |
-|1005|1         |0569f928     |07d7df22    |1          |0               |Tuesday    |madrugada|18993|320|50 |2161|0  |35 |-1    |157|0          |0.0  |
-+----+----------+-------------+------------+-----------+----------------+-----------+---------+-----+---+---+----+---+---+------+---+-----------+-----+
-only showing top 5 rows
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="division-del-dataset-en-entrenamiento-y-prueba">
-<h2>División del dataset en entrenamiento y prueba<a class="headerlink" href="#division-del-dataset-en-entrenamiento-y-prueba" title="Link to this heading">#</a></h2>
-<p>El dataset se divide en proporción 80/20 usando <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code>. Aunque esta estrategia no reproduce exactamente una partición estratificada como en scikit-learn, resulta adecuada para esta fase del proyecto.</p>
-<p>Posteriormente, se aplica <code class="docutils literal notranslate"><span class="pre">cache()</span></code> a ambos subconjuntos con el fin de evitar recomputaciones innecesarias durante la evaluación de múltiples configuraciones del modelo.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_spark</span><span class="p">,</span> <span class="n">test_spark</span> <span class="o">=</span> <span class="n">spark_model_df</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Split realizado correctamente.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Split realizado correctamente.
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="construccion-del-preprocesamiento-en-pyspark">
-<h2>Construcción del preprocesamiento en PySpark<a class="headerlink" href="#construccion-del-preprocesamiento-en-pyspark" title="Link to this heading">#</a></h2>
-<p>Las variables categóricas se transforman mediante dos etapas:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code>, que convierte cada categoría en un índice numérico,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>, que genera representaciones binarias para las categorías indexadas.</p></li>
-</ul>
-<p>Luego, todas las variables se combinan en una sola columna vectorial usando <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code>, y finalmente se aplica <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> para escalar los atributos antes de alimentar la red neuronal.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indexers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">StringIndexer</span><span class="p">(</span>
-        <span class="n">inputCol</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-        <span class="n">outputCol</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">_idx&quot;</span><span class="p">,</span>
-        <span class="n">handleInvalid</span><span class="o">=</span><span class="s2">&quot;keep&quot;</span>
-    <span class="p">)</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features_spark</span>
-<span class="p">]</span>
-
-<span class="n">encoders</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">OneHotEncoder</span><span class="p">(</span>
-        <span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">_idx&quot;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features_spark</span><span class="p">],</span>
-        <span class="n">outputCols</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">_ohe&quot;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features_spark</span><span class="p">]</span>
-    <span class="p">)</span>
-<span class="p">]</span>
-
-<span class="n">assembler_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">_ohe&quot;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_features_spark</span><span class="p">]</span> <span class="o">+</span> <span class="n">numeric_features_spark</span>
-
-<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span>
-    <span class="n">inputCols</span><span class="o">=</span><span class="n">assembler_inputs</span><span class="p">,</span>
-    <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features_raw&quot;</span><span class="p">,</span>
-    <span class="n">handleInvalid</span><span class="o">=</span><span class="s2">&quot;keep&quot;</span>
-<span class="p">)</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span>
-    <span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features_raw&quot;</span><span class="p">,</span>
-    <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span>
-    <span class="n">withStd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">withMean</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="determinacion-del-numero-final-de-caracteristicas">
-<h2>Determinación del número final de características<a class="headerlink" href="#determinacion-del-numero-final-de-caracteristicas" title="Link to this heading">#</a></h2>
-<p>Debido a la codificación <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>, el número final de variables de entrada del modelo es mayor al número original de columnas. Por esta razón, se construye un pipeline temporal para obtener la dimensión exacta del vector <code class="docutils literal notranslate"><span class="pre">features</span></code>, necesaria para definir la arquitectura de la red neuronal en PySpark.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-
-<span class="n">preprocess_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="n">indexers</span> <span class="o">+</span> <span class="n">encoders</span> <span class="o">+</span> <span class="p">[</span><span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">])</span>
-<span class="n">preprocess_model</span> <span class="o">=</span> <span class="n">preprocess_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_spark</span><span class="p">)</span>
-
-<span class="n">train_prepared</span> <span class="o">=</span> <span class="n">preprocess_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="n">test_prepared</span> <span class="o">=</span> <span class="n">preprocess_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
-
-<span class="n">first_vector</span> <span class="o">=</span> <span class="n">train_prepared</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
-<span class="n">num_features_spark</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">first_vector</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Número real de features finales en PySpark:&quot;</span><span class="p">,</span> <span class="n">num_features_spark</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:root:Exception while sending command.
-Traceback (most recent call last):
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\errors\exceptions\captured.py&quot;, line 179, in deco
-    return f(*a, **kw)
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\protocol.py&quot;, line 326, in get_return_value
-    raise Py4JJavaError(
-py4j.protocol.Py4JJavaError: &lt;exception str() failed&gt;
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\clientserver.py&quot;, line 511, in send_command
-    answer = smart_decode(self.stream.readline()[:-1])
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\socket.py&quot;, line 716, in readinto
-    return self._sock.recv_into(b)
-ConnectionResetError: [WinError 10054] Se ha forzado la interrupción de una conexión existente por el host remoto
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\java_gateway.py&quot;, line 1038, in send_command
-    response = connection.send_command(command)
-  File &quot;c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\clientserver.py&quot;, line 539, in send_command
-    raise Py4JNetworkError(
-py4j.protocol.Py4JNetworkError: Error while sending or receiving
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">Py4JJavaError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\errors\exceptions\captured.py:179,</span> in <span class="ni">capture_sql_exception.&lt;locals&gt;.deco</span><span class="nt">(*a, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">179</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="k">except</span> <span class="n">Py4JJavaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\protocol.py:326,</span> in <span class="ni">get_return_value</span><span class="nt">(answer, gateway_client, target_id, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="k">if</span> <span class="n">answer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">REFERENCE_TYPE</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">326</span>     <span class="k">raise</span> <span class="n">Py4JJavaError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">327</span>         <span class="s2">&quot;An error occurred while calling </span><span class="si">{0}{1}{2}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span>         <span class="nb">format</span><span class="p">(</span><span class="n">target_id</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nc">str</span><span class="s1">&#39;&gt;: (&lt;class &#39;</span><span class="ne">ConnectionRefusedError</span><span class="s1">&#39;&gt;, ConnectionRefusedError(10061, &#39;</span><span class="n">No</span> <span class="n">se</span> <span class="n">puede</span> <span class="n">establecer</span> <span class="n">una</span> <span class="n">conexión</span> <span class="n">ya</span> <span class="n">que</span> <span class="n">el</span> <span class="n">equipo</span> <span class="n">de</span> <span class="n">destino</span> <span class="n">denegó</span> <span class="n">expresamente</span> <span class="n">dicha</span> <span class="n">conexión</span><span class="s1">&#39;, None, 10061, None))</span>
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">Py4JError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">40</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">preprocess_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="n">indexers</span> <span class="o">+</span> <span class="n">encoders</span> <span class="o">+</span> <span class="p">[</span><span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">])</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">preprocess_model</span> <span class="o">=</span> <span class="n">preprocess_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_spark</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">train_prepared</span> <span class="o">=</span> <span class="n">preprocess_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">test_prepared</span> <span class="o">=</span> <span class="n">preprocess_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\ml\base.py:205,</span> in <span class="ni">Estimator.fit</span><span class="nt">(self, dataset, params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">205</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="s2">&quot;Params must be either a param map or a list/tuple of param maps, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>     <span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\ml\pipeline.py:134,</span> in <span class="ni">Pipeline._fit</span><span class="nt">(self, dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="n">dataset</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="k">else</span><span class="p">:</span>  <span class="c1"># must be an Estimator</span>
-<span class="ne">--&gt; </span><span class="mi">134</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="n">transformers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">indexOfLastEstimator</span><span class="p">:</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\ml\base.py:205,</span> in <span class="ni">Estimator.fit</span><span class="nt">(self, dataset, params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">205</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="s2">&quot;Params must be either a param map or a list/tuple of param maps, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="s2">&quot;but got </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>     <span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\ml\wrapper.py:381,</span> in <span class="ni">JavaEstimator._fit</span><span class="nt">(self, dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="k">def</span><span class="w"> </span><span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JM</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">381</span>     <span class="n">java_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_java</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span>     <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">java_model</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copyValues</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\ml\wrapper.py:378,</span> in <span class="ni">JavaEstimator._fit_java</span><span class="nt">(self, dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_java_obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transfer_params_to_java</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">378</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_java_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">_jdf</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\java_gateway.py:1322,</span> in <span class="ni">JavaMember.__call__</span><span class="nt">(self, *args)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1316</span> <span class="n">command</span> <span class="o">=</span> <span class="n">proto</span><span class="o">.</span><span class="n">CALL_COMMAND_NAME</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">command_header</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1318</span>     <span class="n">args_command</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1319</span>     <span class="n">proto</span><span class="o">.</span><span class="n">END_COMMAND_PART</span>
-<span class="g g-Whitespace">   </span><span class="mi">1321</span> <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gateway_client</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1322</span> <span class="n">return_value</span> <span class="o">=</span> <span class="n">get_return_value</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1323</span>     <span class="n">answer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gateway_client</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1325</span> <span class="k">for</span> <span class="n">temp_arg</span> <span class="ow">in</span> <span class="n">temp_args</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1326</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">temp_arg</span><span class="p">,</span> <span class="s2">&quot;_detach&quot;</span><span class="p">):</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\errors\exceptions\captured.py:181,</span> in <span class="ni">capture_sql_exception.&lt;locals&gt;.deco</span><span class="nt">(*a, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="k">except</span> <span class="n">Py4JJavaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">181</span>     <span class="n">converted</span> <span class="o">=</span> <span class="n">convert_exception</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">java_exception</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">converted</span><span class="p">,</span> <span class="n">UnknownException</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span>         <span class="c1"># Hide where the exception came from that shows a non-Pythonic</span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span>         <span class="c1"># JVM exception message.</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>         <span class="k">raise</span> <span class="n">converted</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\pyspark\errors\exceptions\captured.py:153,</span> in <span class="ni">convert_exception</span><span class="nt">(e)</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">elif</span> <span class="n">is_instance_of</span><span class="p">(</span><span class="n">gw</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;org.apache.spark.SparkRuntimeException&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="k">return</span> <span class="n">SparkRuntimeException</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">153</span> <span class="k">elif</span> <span class="n">is_instance_of</span><span class="p">(</span><span class="n">gw</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;org.apache.spark.SparkUpgradeException&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span>     <span class="k">return</span> <span class="n">SparkUpgradeException</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span> <span class="n">c</span><span class="p">:</span> <span class="n">Py4JJavaError</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">getCause</span><span class="p">()</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\java_gateway.py:464,</span> in <span class="ni">is_instance_of</span><span class="nt">(gateway, java_object, java_class)</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">raise</span> <span class="n">Py4JError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="s2">&quot;java_class must be a string, a JavaClass, or a JavaObject&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">464</span> <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">jvm</span><span class="o">.</span><span class="n">py4j</span><span class="o">.</span><span class="n">reflection</span><span class="o">.</span><span class="n">TypeUtil</span><span class="o">.</span><span class="n">isInstanceOf</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span>     <span class="n">param</span><span class="p">,</span> <span class="n">java_object</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\ASUS\miniconda3\envs\ml_venv\lib\site-packages\py4j\java_gateway.py:1725,</span> in <span class="ni">JVMView.__getattr__</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1722</span> <span class="n">_</span><span class="p">,</span> <span class="n">error_message</span> <span class="o">=</span> <span class="n">get_error_message</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1723</span> <span class="n">message</span> <span class="o">=</span> <span class="n">compute_exception_message</span><span class="p">(</span>
-<span class="nn">   1724     &quot;{0} does not exist</span> in <span class="ni">the JVM&quot;.format</span><span class="nt">(name), error_message)</span>
-<span class="ne">-&gt; </span><span class="mi">1725</span> <span class="k">raise</span> <span class="n">Py4JError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-
-<span class="ne">Py4JError</span>: py4j does not exist in the JVM
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="funcion-de-entrenamiento-y-evaluacion">
-<h2>Función de entrenamiento y evaluación<a class="headerlink" href="#funcion-de-entrenamiento-y-evaluacion" title="Link to this heading">#</a></h2>
-<p>Se define una función auxiliar para entrenar distintas configuraciones del <code class="docutils literal notranslate"><span class="pre">MultilayerPerceptronClassifier</span></code> y calcular métricas de evaluación comparables con las usadas en scikit-learn.</p>
-<p>En particular, se reportan:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Accuracy</span></code>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Precision</span></code>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Recall</span></code>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">F1-score</span></code>,</p></li>
-</ul>
-<p>calculadas sobre la <strong>clase positiva</strong> (<code class="docutils literal notranslate"><span class="pre">click</span> <span class="pre">=</span> <span class="pre">1</span></code>), además de los tiempos de entrenamiento y predicción.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_pyspark_mlp</span><span class="p">(</span><span class="n">hidden_layers</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">):</span>
-    <span class="n">layers</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_features_spark</span><span class="p">]</span> <span class="o">+</span> <span class="n">hidden_layers</span> <span class="o">+</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    
-    <span class="n">mlp</span> <span class="o">=</span> <span class="n">MultilayerPerceptronClassifier</span><span class="p">(</span>
-        <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span>
-        <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;click&quot;</span><span class="p">,</span>
-        <span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span>
-        <span class="n">probabilityCol</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
-        <span class="n">rawPredictionCol</span><span class="o">=</span><span class="s2">&quot;rawPrediction&quot;</span><span class="p">,</span>
-        <span class="n">layers</span><span class="o">=</span><span class="n">layers</span><span class="p">,</span>
-        <span class="n">stepSize</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span>
-        <span class="n">maxIter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
-        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
-    <span class="p">)</span>
-    
-    <span class="n">start_train</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">mlp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_prepared</span><span class="p">)</span>
-    <span class="n">train_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_train</span>
-    
-    <span class="n">start_pred</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_prepared</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
-    <span class="n">total_preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>   <span class="c1"># materializa la predicción</span>
-    <span class="n">pred_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_pred</span>
-    
-    <span class="n">cm</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">preds</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">count</span><span class="p">()</span>
-        <span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-    <span class="p">)</span>
-    
-    <span class="c1"># Extraer conteos de la matriz de confusión</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_count</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
-        <span class="n">row</span> <span class="o">=</span> <span class="n">cm</span><span class="p">[(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;click&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">real</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">pred</span><span class="p">))]</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    
-    <span class="n">tn</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">fp</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">tp</span> <span class="o">=</span> <span class="n">get_count</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    
-    <span class="n">total</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">fn</span>
-    
-    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span> <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">precision_pos</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">recall_pos</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">f1_pos</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="mi">2</span> <span class="o">*</span> <span class="n">precision_pos</span> <span class="o">*</span> <span class="n">recall_pos</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision_pos</span> <span class="o">+</span> <span class="n">recall_pos</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">precision_pos</span> <span class="o">+</span> <span class="n">recall_pos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="p">)</span>
-    
-    <span class="n">cm_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s2">&quot;Real&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="s2">&quot;Predicción&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="s2">&quot;Count&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="p">]</span>
-    <span class="p">})</span>
-    
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="n">layers</span><span class="p">,</span>
-        <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="n">step_size</span><span class="p">,</span>
-        <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="n">max_iter</span><span class="p">,</span>
-        <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">,</span>
-        <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">precision_pos</span><span class="p">,</span>
-        <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">recall_pos</span><span class="p">,</span>
-        <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1_pos</span><span class="p">,</span>
-        <span class="s2">&quot;train_time_sec&quot;</span><span class="p">:</span> <span class="n">train_time</span><span class="p">,</span>
-        <span class="s2">&quot;pred_time_sec&quot;</span><span class="p">:</span> <span class="n">pred_time</span><span class="p">,</span>
-        <span class="s2">&quot;tp&quot;</span><span class="p">:</span> <span class="n">tp</span><span class="p">,</span>
-        <span class="s2">&quot;tn&quot;</span><span class="p">:</span> <span class="n">tn</span><span class="p">,</span>
-        <span class="s2">&quot;fp&quot;</span><span class="p">:</span> <span class="n">fp</span><span class="p">,</span>
-        <span class="s2">&quot;fn&quot;</span><span class="p">:</span> <span class="n">fn</span><span class="p">,</span>
-        <span class="s2">&quot;total_preds&quot;</span><span class="p">:</span> <span class="n">total_preds</span><span class="p">,</span>
-        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="s2">&quot;preds&quot;</span><span class="p">:</span> <span class="n">preds</span><span class="p">,</span>
-        <span class="s2">&quot;confusion_matrix&quot;</span><span class="p">:</span> <span class="n">cm_pd</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="configuraciones-evaluadas">
-<h2>Configuraciones evaluadas<a class="headerlink" href="#configuraciones-evaluadas" title="Link to this heading">#</a></h2>
-<p>Dado el alto costo computacional del entrenamiento del modelo MLP en PySpark dentro de un entorno local, se optó por evaluar un conjunto reducido de configuraciones representativas. Esta estrategia permite cumplir el objetivo de comparación entre arquitecturas sin hacer inviable la ejecución del proyecto.</p>
-<p>Se probarán dos configuraciones con distinto tamaño de capa oculta y distinta tasa de aprendizaje.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_configs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s2">&quot;hidden_layers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="mf">0.10</span><span class="p">,</span> <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">&quot;hidden_layers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span> <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">&quot;hidden_layers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="entrenamiento-y-evaluacion-de-configuraciones">
-<h2>Entrenamiento y evaluación de configuraciones<a class="headerlink" href="#entrenamiento-y-evaluacion-de-configuraciones" title="Link to this heading">#</a></h2>
-<p>A continuación, se entrena el modelo para cada una de las configuraciones definidas y se registran sus métricas de desempeño y tiempos de cómputo.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspark_results</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">param_configs</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Evaluando configuración: </span><span class="si">{</span><span class="n">config</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-    <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_pyspark_mlp</span><span class="p">(</span>
-        <span class="n">hidden_layers</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;hidden_layers&quot;</span><span class="p">],</span>
-        <span class="n">step_size</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;step_size&quot;</span><span class="p">],</span>
-        <span class="n">max_iter</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;max_iter&quot;</span><span class="p">]</span>
-    <span class="p">)</span>
-    
-    <span class="n">pyspark_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    
-    <span class="nb">print</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Layers=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;layers&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Accuracy=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Precision=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Recall=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;recall&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;F1=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Train=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;train_time_sec&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;Pred=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;pred_time_sec&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluando configuración: {&#39;layers&#39;: [49, 10, 2], &#39;step_size&#39;: 0.1, &#39;max_iter&#39;: 30}
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">Py4JJavaError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">param_configs</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Evaluando configuración: </span><span class="si">{</span><span class="n">config</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_pyspark_mlp</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">layers</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">step_size</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;step_size&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="n">max_iter</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;max_iter&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">pyspark_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="nb">print</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="sa">f</span><span class="s2">&quot;Accuracy=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="sa">f</span><span class="s2">&quot;Precision=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>         <span class="sa">f</span><span class="s2">&quot;Pred=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;pred_time_sec&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="p">)</span>
-
-<span class="nn">Cell In[40], line 26,</span> in <span class="ni">evaluate_pyspark_mlp</span><span class="nt">(layers, step_size, max_iter)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">pred_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_pred</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">preds_cm</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">26</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">preds_cm</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="n">tn</span> <span class="o">=</span> <span class="n">preds_cm</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">preds_cm</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">))</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
-<span class="nn">File c:\Users\migue\miniconda3\envs\ml_venv\lib\site-packages\pyspark\sql\dataframe.py:1238,</span> in <span class="ni">DataFrame.count</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1216</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Returns the number of rows in this :class:`DataFrame`.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1217</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span><span class="sd">     .. versionadded:: 1.3.0</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="sd">     3</span>
-<span class="g g-Whitespace">   </span><span class="mi">1237</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1238</span>     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jdf</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-
-<span class="nn">File c:\Users\migue\miniconda3\envs\ml_venv\lib\site-packages\py4j\java_gateway.py:1322,</span> in <span class="ni">JavaMember.__call__</span><span class="nt">(self, *args)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1316</span> <span class="n">command</span> <span class="o">=</span> <span class="n">proto</span><span class="o">.</span><span class="n">CALL_COMMAND_NAME</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">command_header</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1318</span>     <span class="n">args_command</span> <span class="o">+</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1319</span>     <span class="n">proto</span><span class="o">.</span><span class="n">END_COMMAND_PART</span>
-<span class="g g-Whitespace">   </span><span class="mi">1321</span> <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gateway_client</span><span class="o">.</span><span class="n">send_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1322</span> <span class="n">return_value</span> <span class="o">=</span> <span class="n">get_return_value</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1323</span>     <span class="n">answer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gateway_client</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1325</span> <span class="k">for</span> <span class="n">temp_arg</span> <span class="ow">in</span> <span class="n">temp_args</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1326</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">temp_arg</span><span class="p">,</span> <span class="s2">&quot;_detach&quot;</span><span class="p">):</span>
-
-<span class="nn">File c:\Users\migue\miniconda3\envs\ml_venv\lib\site-packages\pyspark\errors\exceptions\captured.py:179,</span> in <span class="ni">capture_sql_exception.&lt;locals&gt;.deco</span><span class="nt">(*a, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">def</span><span class="w"> </span><span class="nf">deco</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">179</span>         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">except</span> <span class="n">Py4JJavaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span>         <span class="n">converted</span> <span class="o">=</span> <span class="n">convert_exception</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">java_exception</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\migue\miniconda3\envs\ml_venv\lib\site-packages\py4j\protocol.py:326,</span> in <span class="ni">get_return_value</span><span class="nt">(answer, gateway_client, target_id, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">324</span> <span class="n">value</span> <span class="o">=</span> <span class="n">OUTPUT_CONVERTER</span><span class="p">[</span><span class="nb">type</span><span class="p">](</span><span class="n">answer</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">gateway_client</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="k">if</span> <span class="n">answer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">REFERENCE_TYPE</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">326</span>     <span class="k">raise</span> <span class="n">Py4JJavaError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">327</span>         <span class="s2">&quot;An error occurred while calling </span><span class="si">{0}{1}{2}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span>         <span class="nb">format</span><span class="p">(</span><span class="n">target_id</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="k">raise</span> <span class="n">Py4JError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="s2">&quot;An error occurred while calling </span><span class="si">{0}{1}{2}</span><span class="s2">. Trace:</span><span class="se">\n</span><span class="si">{3}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span>         <span class="nb">format</span><span class="p">(</span><span class="n">target_id</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
-
-<span class="ne">Py4JJavaError</span>: An error occurred while calling o1670.count.
-<span class="p">:</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">SparkException</span><span class="p">:</span> <span class="n">Job</span> <span class="n">aborted</span> <span class="n">due</span> <span class="n">to</span> <span class="n">stage</span> <span class="n">failure</span><span class="p">:</span> <span class="n">Task</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">stage</span> <span class="mf">99.0</span> <span class="n">failed</span> <span class="mi">1</span> <span class="n">times</span><span class="p">,</span> <span class="n">most</span> <span class="n">recent</span> <span class="n">failure</span><span class="p">:</span> <span class="n">Lost</span> <span class="n">task</span> <span class="mf">0.0</span> <span class="ow">in</span> <span class="n">stage</span> <span class="mf">99.0</span> <span class="p">(</span><span class="n">TID</span> <span class="mi">80</span><span class="p">)</span> <span class="p">(</span><span class="n">localhost</span> <span class="n">executor</span> <span class="n">driver</span><span class="p">):</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">SparkException</span><span class="p">:</span> <span class="p">[</span><span class="n">FAILED_EXECUTE_UDF</span><span class="p">]</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">user</span> <span class="n">defined</span> <span class="n">function</span> <span class="p">(</span><span class="err">`</span><span class="n">ProbabilisticClassificationModel</span><span class="err">$$</span><span class="n">Lambda</span><span class="err">$</span><span class="mi">4305</span><span class="o">/</span><span class="mh">0x0000000801593840</span><span class="err">`</span><span class="p">:</span> <span class="p">(</span><span class="n">struct</span><span class="o">&lt;</span><span class="nb">type</span><span class="p">:</span><span class="n">tinyint</span><span class="p">,</span><span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">indices</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">values</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">struct</span><span class="o">&lt;</span><span class="nb">type</span><span class="p">:</span><span class="n">tinyint</span><span class="p">,</span><span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">indices</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">values</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&gt;</span><span class="p">)</span><span class="o">.</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">QueryExecutionErrors</span><span class="err">$</span><span class="o">.</span><span class="n">failedExecuteUserDefinedFunctionError</span><span class="p">(</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">198</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">failedExecuteUserDefinedFunctionError</span><span class="p">(</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">scala</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">catalyst</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">GeneratedClass</span><span class="err">$</span><span class="n">GeneratedIteratorForCodegenStage1</span><span class="o">.</span><span class="n">hashAgg_doAggregateWithoutKey_0</span><span class="err">$</span><span class="p">(</span><span class="n">Unknown</span> <span class="n">Source</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">catalyst</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">GeneratedClass</span><span class="err">$</span><span class="n">GeneratedIteratorForCodegenStage1</span><span class="o">.</span><span class="n">processNext</span><span class="p">(</span><span class="n">Unknown</span> <span class="n">Source</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">BufferedRowIterator</span><span class="o">.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">BufferedRowIterator</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">43</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">WholeStageCodegenEvaluatorFactory</span><span class="err">$</span><span class="n">WholeStageCodegenPartitionEvaluator</span><span class="err">$$</span><span class="n">anon</span><span class="err">$</span><span class="mf">1.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">WholeStageCodegenEvaluatorFactory</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">43</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">Iterator</span><span class="err">$$</span><span class="n">anon</span><span class="err">$</span><span class="mf">10.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">Iterator</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">460</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">shuffle</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">BypassMergeSortShuffleWriter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">BypassMergeSortShuffleWriter</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">140</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">shuffle</span><span class="o">.</span><span class="n">ShuffleWriteProcessor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ShuffleWriteProcessor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">59</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">runTask</span><span class="p">(</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">104</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">runTask</span><span class="p">(</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">54</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">TaskContext</span><span class="o">.</span><span class="n">runTaskWithListeners</span><span class="p">(</span><span class="n">TaskContext</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">166</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">Task</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">141</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">Executor</span><span class="err">$</span><span class="n">TaskRunner</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">run</span><span class="err">$</span><span class="mi">4</span><span class="p">(</span><span class="n">Executor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">620</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="p">(</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">64</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="err">$</span><span class="p">(</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">61</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">Utils</span><span class="err">$</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">94</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">Executor</span><span class="err">$</span><span class="n">TaskRunner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Executor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">623</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">concurrent</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">runWorker</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">1128</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">concurrent</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="err">$</span><span class="n">Worker</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">628</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Thread</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">829</span><span class="p">)</span>
-<span class="n">Caused</span> <span class="n">by</span><span class="p">:</span> <span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">IllegalArgumentException</span><span class="p">:</span> <span class="n">requirement</span> <span class="n">failed</span><span class="p">:</span> <span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span> <span class="n">Dimension</span> <span class="n">mismatch</span><span class="err">!</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">Predef</span><span class="err">$</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="n">Predef</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">281</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">BreezeUtil</span><span class="err">$</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">BreezeUtil</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">42</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">AffineLayerModel</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">164</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">FeedForwardModel</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">508</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">FeedForwardModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">561</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">MultilayerPerceptronClassificationModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">MultilayerPerceptronClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">337</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">MultilayerPerceptronClassificationModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">MultilayerPerceptronClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">279</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">ProbabilisticClassificationModel</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">transform</span><span class="err">$</span><span class="mi">2</span><span class="p">(</span><span class="n">ProbabilisticClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">121</span><span class="p">)</span>
-	<span class="o">...</span> <span class="mi">19</span> <span class="n">more</span>
-
-<span class="n">Driver</span> <span class="n">stacktrace</span><span class="p">:</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">failJobAndIndependentStages</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2856</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">abortStage</span><span class="err">$</span><span class="mi">2</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2792</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">abortStage</span><span class="err">$</span><span class="mi">2</span><span class="err">$</span><span class="n">adapted</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2791</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="n">ResizableArray</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">ResizableArray</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">62</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="n">ResizableArray</span><span class="o">.</span><span class="n">foreach</span><span class="err">$</span><span class="p">(</span><span class="n">ResizableArray</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">55</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">mutable</span><span class="o">.</span><span class="n">ArrayBuffer</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">ArrayBuffer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">49</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">abortStage</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2791</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">handleTaskSetFailed</span><span class="err">$</span><span class="mi">1</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">1247</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">handleTaskSetFailed</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="n">adapted</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">1247</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">Option</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">Option</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">407</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">handleTaskSetFailed</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">1247</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGSchedulerEventProcessLoop</span><span class="o">.</span><span class="n">doOnReceive</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">3060</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGSchedulerEventProcessLoop</span><span class="o">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2994</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">DAGSchedulerEventProcessLoop</span><span class="o">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">DAGScheduler</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">2983</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">EventLoop</span><span class="err">$$</span><span class="n">anon</span><span class="err">$</span><span class="mf">1.</span><span class="n">run</span><span class="p">(</span><span class="n">EventLoop</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">49</span><span class="p">)</span>
-<span class="n">Caused</span> <span class="n">by</span><span class="p">:</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">SparkException</span><span class="p">:</span> <span class="p">[</span><span class="n">FAILED_EXECUTE_UDF</span><span class="p">]</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">user</span> <span class="n">defined</span> <span class="n">function</span> <span class="p">(</span><span class="err">`</span><span class="n">ProbabilisticClassificationModel</span><span class="err">$$</span><span class="n">Lambda</span><span class="err">$</span><span class="mi">4305</span><span class="o">/</span><span class="mh">0x0000000801593840</span><span class="err">`</span><span class="p">:</span> <span class="p">(</span><span class="n">struct</span><span class="o">&lt;</span><span class="nb">type</span><span class="p">:</span><span class="n">tinyint</span><span class="p">,</span><span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">indices</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">values</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">struct</span><span class="o">&lt;</span><span class="nb">type</span><span class="p">:</span><span class="n">tinyint</span><span class="p">,</span><span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">indices</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">values</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&gt;</span><span class="p">)</span><span class="o">.</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">QueryExecutionErrors</span><span class="err">$</span><span class="o">.</span><span class="n">failedExecuteUserDefinedFunctionError</span><span class="p">(</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">198</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">failedExecuteUserDefinedFunctionError</span><span class="p">(</span><span class="n">QueryExecutionErrors</span><span class="o">.</span><span class="n">scala</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">catalyst</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">GeneratedClass</span><span class="err">$</span><span class="n">GeneratedIteratorForCodegenStage1</span><span class="o">.</span><span class="n">hashAgg_doAggregateWithoutKey_0</span><span class="err">$</span><span class="p">(</span><span class="n">Unknown</span> <span class="n">Source</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">catalyst</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">GeneratedClass</span><span class="err">$</span><span class="n">GeneratedIteratorForCodegenStage1</span><span class="o">.</span><span class="n">processNext</span><span class="p">(</span><span class="n">Unknown</span> <span class="n">Source</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">BufferedRowIterator</span><span class="o">.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">BufferedRowIterator</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">43</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">WholeStageCodegenEvaluatorFactory</span><span class="err">$</span><span class="n">WholeStageCodegenPartitionEvaluator</span><span class="err">$$</span><span class="n">anon</span><span class="err">$</span><span class="mf">1.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">WholeStageCodegenEvaluatorFactory</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">43</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">Iterator</span><span class="err">$$</span><span class="n">anon</span><span class="err">$</span><span class="mf">10.</span><span class="n">hasNext</span><span class="p">(</span><span class="n">Iterator</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">460</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">shuffle</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">BypassMergeSortShuffleWriter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">BypassMergeSortShuffleWriter</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">140</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">shuffle</span><span class="o">.</span><span class="n">ShuffleWriteProcessor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ShuffleWriteProcessor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">59</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">runTask</span><span class="p">(</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">104</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">runTask</span><span class="p">(</span><span class="n">ShuffleMapTask</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">54</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">TaskContext</span><span class="o">.</span><span class="n">runTaskWithListeners</span><span class="p">(</span><span class="n">TaskContext</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">166</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">Task</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Task</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">141</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">Executor</span><span class="err">$</span><span class="n">TaskRunner</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">run</span><span class="err">$</span><span class="mi">4</span><span class="p">(</span><span class="n">Executor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">620</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="p">(</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">64</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="err">$</span><span class="p">(</span><span class="n">SparkErrorUtils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">61</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">Utils</span><span class="err">$</span><span class="o">.</span><span class="n">tryWithSafeFinally</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">94</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">Executor</span><span class="err">$</span><span class="n">TaskRunner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Executor</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">623</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">concurrent</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">runWorker</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">1128</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">concurrent</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="err">$</span><span class="n">Worker</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">628</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="n">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Thread</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">829</span><span class="p">)</span>
-<span class="n">Caused</span> <span class="n">by</span><span class="p">:</span> <span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">IllegalArgumentException</span><span class="p">:</span> <span class="n">requirement</span> <span class="n">failed</span><span class="p">:</span> <span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span> <span class="n">Dimension</span> <span class="n">mismatch</span><span class="err">!</span>
-	<span class="n">at</span> <span class="n">scala</span><span class="o">.</span><span class="n">Predef</span><span class="err">$</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="n">Predef</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">281</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">BreezeUtil</span><span class="err">$</span><span class="o">.</span><span class="n">dgemm</span><span class="p">(</span><span class="n">BreezeUtil</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">42</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">AffineLayerModel</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">164</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">FeedForwardModel</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">508</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">ann</span><span class="o">.</span><span class="n">FeedForwardModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">Layer</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">561</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">MultilayerPerceptronClassificationModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">MultilayerPerceptronClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">337</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">MultilayerPerceptronClassificationModel</span><span class="o">.</span><span class="n">predictRaw</span><span class="p">(</span><span class="n">MultilayerPerceptronClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">279</span><span class="p">)</span>
-	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">ml</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">ProbabilisticClassificationModel</span><span class="o">.</span><span class="err">$</span><span class="n">anonfun</span><span class="err">$</span><span class="n">transform</span><span class="err">$</span><span class="mi">2</span><span class="p">(</span><span class="n">ProbabilisticClassifier</span><span class="o">.</span><span class="n">scala</span><span class="p">:</span><span class="mi">121</span><span class="p">)</span>
-	<span class="o">...</span> <span class="mi">19</span> <span class="n">more</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="resumen-de-resultados-en-pyspark">
-<h2>Resumen de resultados en PySpark<a class="headerlink" href="#resumen-de-resultados-en-pyspark" title="Link to this heading">#</a></h2>
-<p>Se consolidan las métricas obtenidas para comparar el desempeño de las distintas configuraciones probadas en el entorno de Spark.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspark_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;layers&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">]),</span>
-        <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;step_size&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;max_iter&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Accuracy&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Precision&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;precision&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Recall&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;recall&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;F1&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Train Time (s)&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;train_time_sec&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Pred Time (s)&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;pred_time_sec&quot;</span><span class="p">]</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">pyspark_results</span>
-<span class="p">])</span>
-
-<span class="n">pyspark_results_df</span> <span class="o">=</span> <span class="n">pyspark_results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;F1&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">pyspark_results_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="seleccion-del-mejor-modelo-de-pyspark">
-<h2>Selección del mejor modelo de PySpark<a class="headerlink" href="#seleccion-del-mejor-modelo-de-pyspark" title="Link to this heading">#</a></h2>
-<p>Se selecciona como mejor configuración aquella que obtenga el mayor <code class="docutils literal notranslate"><span class="pre">F1-score</span></code>, dado que esta métrica resume el equilibrio entre precisión y recall en un problema de clasificación desbalanceada.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_pyspark_result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pyspark_results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor configuración PySpark:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layers:&quot;</span><span class="p">,</span> <span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step size:&quot;</span><span class="p">,</span> <span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;step_size&quot;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max iter:&quot;</span><span class="p">,</span> <span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;max_iter&quot;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;precision&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;recall&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train time (s):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;train_time_sec&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pred time (s):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;pred_time_sec&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="matriz-de-confusion-del-mejor-modelo">
-<h2>Matriz de confusión del mejor modelo<a class="headerlink" href="#matriz-de-confusion-del-mejor-modelo" title="Link to this heading">#</a></h2>
-<p>La matriz de confusión permite visualizar de forma directa los aciertos y errores del mejor clasificador obtenido en PySpark, distinguiendo entre verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">best_pyspark_result</span><span class="p">[</span><span class="s2">&quot;confusion_matrix&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="interpretacion-de-los-resultados-de-pyspark">
-<h2>Interpretación de los resultados de PySpark<a class="headerlink" href="#interpretacion-de-los-resultados-de-pyspark" title="Link to this heading">#</a></h2>
-<p>Los resultados obtenidos muestran que PySpark permite entrenar una red neuronal multicapa en un entorno preparado para escalar a grandes volúmenes de datos. Sin embargo, en ejecución local el costo computacional del entrenamiento fue considerablemente mayor que en scikit-learn, incluso al reducir el número de variables y el conjunto de configuraciones evaluadas.</p>
-<p>Aun así, esta sección permitió cumplir el objetivo central del proyecto: construir y evaluar un modelo MLP en PySpark, medir su tiempo de entrenamiento y predicción, y dejar una base comparable frente al enfoque implementado en scikit-learn.</p>
-<p>En la siguiente sección se realizará la comparación directa entre ambos entornos, considerando métricas de clasificación y tiempos de cómputo.</p>
 </section>
 </section>
 
@@ -3531,6 +2634,15 @@ py4j.protocol.Py4JNetworkError: Error while sending or receiving
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">1. Análisis Exploratorio de Datos (EDA)</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="pyspark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Modelado con PySpark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -3595,26 +2707,6 @@ py4j.protocol.Py4JNetworkError: Error while sending or receiving
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-general-de-lime">Interpretación general de LIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-de-la-seccion">Conclusión de la sección</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-de-los-resultados-obtenidos-con-lime">Discusión de los resultados obtenidos con LIME</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">Modelado con PySpark</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-entorno-en-pyspark">Preparación del entorno en PySpark</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-la-sesion-de-spark">Creación de la sesión de Spark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-dataset-en-spark">Lectura del dataset en Spark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-temporales-en-pyspark">Ingeniería de variables temporales en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-final-antes-del-modelado">Verificación final antes del modelado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables-para-pyspark">Selección de variables para PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-dataset-para-modelado">Preparación del dataset para modelado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-del-dataset-en-entrenamiento-y-prueba">División del dataset en entrenamiento y prueba</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-preprocesamiento-en-pyspark">Construcción del preprocesamiento en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacion-del-numero-final-de-caracteristicas">Determinación del número final de características</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-entrenamiento-y-evaluacion">Función de entrenamiento y evaluación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuraciones-evaluadas">Configuraciones evaluadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-y-evaluacion-de-configuraciones">Entrenamiento y evaluación de configuraciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-resultados-en-pyspark">Resumen de resultados en PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-mejor-modelo-de-pyspark">Selección del mejor modelo de PySpark</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion-del-mejor-modelo">Matriz de confusión del mejor modelo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados-de-pyspark">Interpretación de los resultados de PySpark</a></li>
 </ul>
 </li>
 </ul>

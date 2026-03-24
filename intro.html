@@ -186,6 +186,7 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="pyspark.html">3. Modelado con PySpark</a></li>
 
 
 </ul>
@@ -360,7 +361,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -376,6 +379,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">Objetivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles">Variables disponibles</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -387,6 +399,32 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="miniproyecto-1-deeplearning">
 <h1>Miniproyecto #1 DeepLearning<a class="headerlink" href="#miniproyecto-1-deeplearning" title="Link to this heading">#</a></h1>
+<p>Desarrollado por:</p>
+<ul class="simple">
+<li><p>María Clara Ávila</p></li>
+<li><p>Mateo Giraldo</p></li>
+<li><p>Miguel Lugo</p></li>
+<li><p>Hector Sanjuan</p></li>
+</ul>
+<p>Antes de empezar con el análisis exploratorio, es necesario que tengamos contexto del tema que vamos a abordar.</p>
+<p>El dataset utilizado para este proyecto reposa en <code class="docutils literal notranslate"><span class="pre">Kaggle</span></code> y puede acceder a el mediante este enlace: <a class="reference external" href="https://www.kaggle.com/competitions/avazu-ctr-prediction">https://www.kaggle.com/competitions/avazu-ctr-prediction</a></p>
+<section id="objetivo">
+<h2>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h2>
+<p>Construir un modelo de clasificación supervisada usando MLP (Multilayer Perceptron/Red Neuronal Multicapa) para predecir si un usuario hará clic en un anuncio móvil (click = 1) o no (click = 0). Se comparará el desempeño de los modelos construidos con scikit-learn y PySpark. Además, se aplicará LIME para interpretar predicciones individuales del modelo.</p>
+</section>
+<section id="variables-disponibles">
+<h2>Variables disponibles<a class="headerlink" href="#variables-disponibles" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">id</span></code>: identificador del anuncio</p>
+<p><code class="docutils literal notranslate"><span class="pre">click</span></code>: indicador de si hubo clic</p>
+<p><code class="docutils literal notranslate"><span class="pre">hour</span></code>: hora de la impresión del anuncio (formato YYMMDDHH)</p>
+<p><code class="docutils literal notranslate"><span class="pre">C1</span></code>: variable categórica anonimizada</p>
+<p><code class="docutils literal notranslate"><span class="pre">banner_pos</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">site_id</span></code>, <code class="docutils literal notranslate"><span class="pre">site_domain</span></code>, <code class="docutils literal notranslate"><span class="pre">site_category</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">app_id</span></code>, <code class="docutils literal notranslate"><span class="pre">app_domain</span></code>, <code class="docutils literal notranslate"><span class="pre">app_category</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">device_id</span></code>,<code class="docutils literal notranslate"><span class="pre">device_ip</span></code>, <code class="docutils literal notranslate"><span class="pre">device_model</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">device_type</span></code>, <code class="docutils literal notranslate"><span class="pre">device_conn_type</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">C14–C21</span></code>: variables categóricas anónimas</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -436,6 +474,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">Objetivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles">Variables disponibles</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
